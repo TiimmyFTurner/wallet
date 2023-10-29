@@ -1,0 +1,10 @@
+{
+    "language": "فارسی",
+    "@language":{
+        "description": "The current Language"
+      },
+    "card": "کارت",
+    "@card":{
+        "description": "The current Language"
+      }
+}
