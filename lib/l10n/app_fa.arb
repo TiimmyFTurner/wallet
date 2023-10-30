@@ -6,5 +6,6 @@
     "card": "کارت",
     "@card":{
         "description": "The current Language"
-      }
+      },
+    "wallet": "کیف پول"
 }

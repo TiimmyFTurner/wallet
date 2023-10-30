@@ -6,5 +6,6 @@
     "card": "Card",
     "@card":{
         "description": "The current Language"
-      }
+      },
+    "wallet": "Wallet"
 }
