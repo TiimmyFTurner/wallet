@@ -1,9 +1,9 @@
 class Bank{
   final String name;
-  final int id;
+  final int? code;
 
   Bank({
     required this.name,
-    required this.id
+    this.code,
   });
 }

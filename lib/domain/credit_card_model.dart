@@ -11,11 +11,9 @@ class CreditCard{
   final String? note;
   final Bank bank;
 
-  final int id;
 
   CreditCard({
     required this.title,
-    required this.id,
     required this.name,
     required this.number,
     required this.cvv2,
