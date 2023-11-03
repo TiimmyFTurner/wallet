@@ -7,5 +7,8 @@
     "@card":{
         "description": "The current Language"
       },
-    "wallet": "کیف پول"
+    "wallet": "کیف پول",
+    "bank": "بانک",
+    "bankName": "{bank_name, select, ansar{انصار}  arman{آرمان}  ayande{آینده}  bankino{بانکینو}  blu{بلوبانک}  dey{دی}  eghtesadnovin{اقتصاد نوین}  gardeshgari{گردشگری}  hekmat{حکمت}  iramzamin{ایران زمین}  karafarin{کارآفرین}  keshavarzi{کشاورزی}  khavaremiane{خاورمیانه}  kosar{کوثر}  markazi{مرکزی}  maskan{مسکن}  mehreeghtesad{مهر اقتصاد}  mehreiran{مهر ایران}  mellat{ملت}  melli{ملی}  parsian{پارسیان}  pasargad{پاسارگاد}  refah{رفاه}  resalat{رصالت}  saderat{صادرات}  salehin{صالحین}  saman{سامان}  samen{ثامن}  sanatmadan{صنعت و معدن}  sarmayeh{سرمایه}  sepah{سپه}  shahr{شهر}  shaparak{شاپرک}  sina{سینا}  taavon{تعاون}  tejarat{تجارت}  tsaderat{توسعه صادرات} other{بانک}}"
+
 }
