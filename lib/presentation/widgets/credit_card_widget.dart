@@ -1,10 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wallet/domain/credit_card_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:share_plus/share_plus.dart';
 
 class CreditCardWidget extends ConsumerWidget {
   final CreditCard creditCard;
@@ -120,7 +119,7 @@ class CreditCardWidget extends ConsumerWidget {
             ),
           ),
         ],
-      ), // Foreground widget here
+      ),
     );
   }
 
@@ -162,7 +161,9 @@ class CreditCardWidget extends ConsumerWidget {
                           Navigator.pop(context),
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                                content: Text(AppLocalizations.of(context)!.cardNumberCopyMessage)),
+                              content: Text(AppLocalizations.of(context)!
+                                  .cardNumberCopyMessage),
+                            ),
                           )
                         },
                         child: Text(
@@ -177,7 +178,10 @@ class CreditCardWidget extends ConsumerWidget {
                     child: SizedBox(
                       height: 56,
                       child: FilledButton.tonal(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () async {
+                          Navigator.pop(context);
+                          await Share.share(creditCard.number);
+                        },
                         child: Text(AppLocalizations.of(context)!.share,
                             style: const TextStyle(fontSize: 20)),
                       ),
@@ -208,7 +212,9 @@ class CreditCardWidget extends ConsumerWidget {
                           Navigator.pop(context),
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                                content: Text(AppLocalizations.of(context)!.shbaCopyMessage)),
+                              content: Text(AppLocalizations.of(context)!
+                                  .shbaCopyMessage),
+                            ),
                           )
                         },
                         child: Text(
@@ -223,7 +229,10 @@ class CreditCardWidget extends ConsumerWidget {
                     child: SizedBox(
                       height: 56,
                       child: FilledButton.tonal(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () async {
+                          Navigator.pop(context);
+                          await Share.share(creditCard.shba!);
+                        },
                         child: Text(
                           AppLocalizations.of(context)!.share,
                           style: const TextStyle(fontSize: 20),
