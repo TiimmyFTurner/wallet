@@ -39,9 +39,11 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.1
-  flutter_riverpod: ^2.4.5
-  riverpod_annotation: ^2.3.0
+  flutter_riverpod: ^2.4.9
+  riverpod_annotation: ^2.3.3
   share_plus: ^7.2.1
+  freezed: ^2.4.6
+  freezed_annotation: ^2.4.1
 
 dev_dependencies:
   flutter_test:
@@ -53,10 +55,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  riverpod_generator: ^2.3.5
-  build_runner: ^2.4.6
-  custom_lint: ^0.5.5
-  riverpod_lint: ^2.3.3
+  riverpod_generator: ^2.3.9
+  build_runner: ^2.4.7
+  custom_lint: ^0.5.7
+  riverpod_lint: ^2.3.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
