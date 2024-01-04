@@ -8,6 +8,7 @@ part 'credit_card_model.g.dart';
 @unfreezed
 class CreditCard with _$CreditCard {
   factory CreditCard({
+    required int id,
     required String title,
     required String name,
     required String number,

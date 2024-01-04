@@ -20,6 +20,8 @@ NoteCard _$NoteCardFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NoteCard {
+  int get id => throw _privateConstructorUsedError;
+  set id(int value) => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   set title(String value) => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
@@ -36,7 +38,7 @@ abstract class $NoteCardCopyWith<$Res> {
   factory $NoteCardCopyWith(NoteCard value, $Res Function(NoteCard) then) =
       _$NoteCardCopyWithImpl<$Res, NoteCard>;
   @useResult
-  $Res call({String title, String note});
+  $Res call({int id, String title, String note});
 }
 
 /// @nodoc
@@ -52,10 +54,15 @@ class _$NoteCardCopyWithImpl<$Res, $Val extends NoteCard>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? note = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -76,7 +83,7 @@ abstract class _$$NoteCardImplCopyWith<$Res>
       __$$NoteCardImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String note});
+  $Res call({int id, String title, String note});
 }
 
 /// @nodoc
@@ -90,10 +97,15 @@ class __$$NoteCardImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? note = null,
   }) {
     return _then(_$NoteCardImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -109,11 +121,13 @@ class __$$NoteCardImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NoteCardImpl implements _NoteCard {
-  _$NoteCardImpl({required this.title, required this.note});
+  _$NoteCardImpl({required this.id, required this.title, required this.note});
 
   factory _$NoteCardImpl.fromJson(Map<String, dynamic> json) =>
       _$$NoteCardImplFromJson(json);
 
+  @override
+  int id;
   @override
   String title;
   @override
@@ -121,7 +135,7 @@ class _$NoteCardImpl implements _NoteCard {
 
   @override
   String toString() {
-    return 'NoteCard(title: $title, note: $note)';
+    return 'NoteCard(id: $id, title: $title, note: $note)';
   }
 
   @JsonKey(ignore: true)
@@ -139,12 +153,17 @@ class _$NoteCardImpl implements _NoteCard {
 }
 
 abstract class _NoteCard implements NoteCard {
-  factory _NoteCard({required String title, required String note}) =
-      _$NoteCardImpl;
+  factory _NoteCard(
+      {required int id,
+      required String title,
+      required String note}) = _$NoteCardImpl;
 
   factory _NoteCard.fromJson(Map<String, dynamic> json) =
       _$NoteCardImpl.fromJson;
 
+  @override
+  int get id;
+  set id(int value);
   @override
   String get title;
   set title(String value);

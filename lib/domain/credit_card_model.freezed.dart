@@ -20,6 +20,8 @@ CreditCard _$CreditCardFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CreditCard {
+  int get id => throw _privateConstructorUsedError;
+  set id(int value) => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   set title(String value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -52,7 +54,8 @@ abstract class $CreditCardCopyWith<$Res> {
       _$CreditCardCopyWithImpl<$Res, CreditCard>;
   @useResult
   $Res call(
-      {String title,
+      {int id,
+      String title,
       String name,
       String number,
       String cvv2,
@@ -78,6 +81,7 @@ class _$CreditCardCopyWithImpl<$Res, $Val extends CreditCard>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? name = null,
     Object? number = null,
@@ -89,6 +93,10 @@ class _$CreditCardCopyWithImpl<$Res, $Val extends CreditCard>
     Object? bank = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -146,7 +154,8 @@ abstract class _$$CreditCardImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String title,
+      {int id,
+      String title,
       String name,
       String number,
       String cvv2,
@@ -171,6 +180,7 @@ class __$$CreditCardImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? name = null,
     Object? number = null,
@@ -182,6 +192,10 @@ class __$$CreditCardImplCopyWithImpl<$Res>
     Object? bank = null,
   }) {
     return _then(_$CreditCardImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -226,7 +240,8 @@ class __$$CreditCardImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CreditCardImpl implements _CreditCard {
   _$CreditCardImpl(
-      {required this.title,
+      {required this.id,
+      required this.title,
       required this.name,
       required this.number,
       required this.cvv2,
@@ -239,6 +254,8 @@ class _$CreditCardImpl implements _CreditCard {
   factory _$CreditCardImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreditCardImplFromJson(json);
 
+  @override
+  int id;
   @override
   String title;
   @override
@@ -260,7 +277,7 @@ class _$CreditCardImpl implements _CreditCard {
 
   @override
   String toString() {
-    return 'CreditCard(title: $title, name: $name, number: $number, cvv2: $cvv2, exp: $exp, shba: $shba, pass: $pass, note: $note, bank: $bank)';
+    return 'CreditCard(id: $id, title: $title, name: $name, number: $number, cvv2: $cvv2, exp: $exp, shba: $shba, pass: $pass, note: $note, bank: $bank)';
   }
 
   @JsonKey(ignore: true)
@@ -279,7 +296,8 @@ class _$CreditCardImpl implements _CreditCard {
 
 abstract class _CreditCard implements CreditCard {
   factory _CreditCard(
-      {required String title,
+      {required int id,
+      required String title,
       required String name,
       required String number,
       required String cvv2,
@@ -292,6 +310,9 @@ abstract class _CreditCard implements CreditCard {
   factory _CreditCard.fromJson(Map<String, dynamic> json) =
       _$CreditCardImpl.fromJson;
 
+  @override
+  int get id;
+  set id(int value);
   @override
   String get title;
   set title(String value);
