@@ -3,6 +3,8 @@ import 'package:wallet/domain/bank_model.dart';
 
 part 'credit_card_model.freezed.dart';
 
+part 'credit_card_model.g.dart';
+
 @unfreezed
 class CreditCard with _$CreditCard {
   factory CreditCard({
@@ -16,4 +18,7 @@ class CreditCard with _$CreditCard {
     required String note,
     required Bank bank,
   }) = _CreditCard;
+
+  factory CreditCard.fromJson(Map<String, dynamic> json) =>
+      _$CreditCardFromJson(json);
 }

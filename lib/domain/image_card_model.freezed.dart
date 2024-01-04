@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+ImageCard _$ImageCardFromJson(Map<String, dynamic> json) {
+  return _ImageCard.fromJson(json);
+}
+
 /// @nodoc
 mixin _$ImageCard {
   String get note => throw _privateConstructorUsedError;
@@ -21,6 +25,7 @@ mixin _$ImageCard {
   String get title => throw _privateConstructorUsedError;
   set title(String value) => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ImageCardCopyWith<ImageCard> get copyWith =>
       throw _privateConstructorUsedError;
@@ -102,9 +107,12 @@ class __$$ImageCardImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ImageCardImpl implements _ImageCard {
   _$ImageCardImpl(this.note, {required this.title});
+
+  factory _$ImageCardImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImageCardImplFromJson(json);
 
   @override
   String note;
@@ -121,10 +129,20 @@ class _$ImageCardImpl implements _ImageCard {
   @pragma('vm:prefer-inline')
   _$$ImageCardImplCopyWith<_$ImageCardImpl> get copyWith =>
       __$$ImageCardImplCopyWithImpl<_$ImageCardImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ImageCardImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _ImageCard implements ImageCard {
   factory _ImageCard(String note, {required String title}) = _$ImageCardImpl;
+
+  factory _ImageCard.fromJson(Map<String, dynamic> json) =
+      _$ImageCardImpl.fromJson;
 
   @override
   String get note;

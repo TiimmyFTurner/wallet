@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Bank _$BankFromJson(Map<String, dynamic> json) {
+  return _Bank.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Bank {
   String get name => throw _privateConstructorUsedError;
   String get code => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BankCopyWith<Bank> get copyWith => throw _privateConstructorUsedError;
 }
@@ -97,9 +102,12 @@ class __$$BankImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$BankImpl implements _Bank {
   const _$BankImpl({required this.name, required this.code});
+
+  factory _$BankImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BankImplFromJson(json);
 
   @override
   final String name;
@@ -120,6 +128,7 @@ class _$BankImpl implements _Bank {
             (identical(other.code, code) || other.code == code));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, code);
 
@@ -128,11 +137,20 @@ class _$BankImpl implements _Bank {
   @pragma('vm:prefer-inline')
   _$$BankImplCopyWith<_$BankImpl> get copyWith =>
       __$$BankImplCopyWithImpl<_$BankImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BankImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Bank implements Bank {
   const factory _Bank(
       {required final String name, required final String code}) = _$BankImpl;
+
+  factory _Bank.fromJson(Map<String, dynamic> json) = _$BankImpl.fromJson;
 
   @override
   String get name;

@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+CreditCard _$CreditCardFromJson(Map<String, dynamic> json) {
+  return _CreditCard.fromJson(json);
+}
+
 /// @nodoc
 mixin _$CreditCard {
   String get title => throw _privateConstructorUsedError;
@@ -35,6 +39,7 @@ mixin _$CreditCard {
   Bank get bank => throw _privateConstructorUsedError;
   set bank(Bank value) => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CreditCardCopyWith<CreditCard> get copyWith =>
       throw _privateConstructorUsedError;
@@ -218,7 +223,7 @@ class __$$CreditCardImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$CreditCardImpl implements _CreditCard {
   _$CreditCardImpl(
       {required this.title,
@@ -230,6 +235,9 @@ class _$CreditCardImpl implements _CreditCard {
       required this.pass,
       required this.note,
       required this.bank});
+
+  factory _$CreditCardImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CreditCardImplFromJson(json);
 
   @override
   String title;
@@ -260,6 +268,13 @@ class _$CreditCardImpl implements _CreditCard {
   @pragma('vm:prefer-inline')
   _$$CreditCardImplCopyWith<_$CreditCardImpl> get copyWith =>
       __$$CreditCardImplCopyWithImpl<_$CreditCardImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CreditCardImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _CreditCard implements CreditCard {
@@ -273,6 +288,9 @@ abstract class _CreditCard implements CreditCard {
       required String pass,
       required String note,
       required Bank bank}) = _$CreditCardImpl;
+
+  factory _CreditCard.fromJson(Map<String, dynamic> json) =
+      _$CreditCardImpl.fromJson;
 
   @override
   String get title;

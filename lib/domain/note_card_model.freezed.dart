@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+NoteCard _$NoteCardFromJson(Map<String, dynamic> json) {
+  return _NoteCard.fromJson(json);
+}
+
 /// @nodoc
 mixin _$NoteCard {
   String get title => throw _privateConstructorUsedError;
@@ -21,6 +25,7 @@ mixin _$NoteCard {
   String get note => throw _privateConstructorUsedError;
   set note(String value) => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $NoteCardCopyWith<NoteCard> get copyWith =>
       throw _privateConstructorUsedError;
@@ -102,9 +107,12 @@ class __$$NoteCardImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$NoteCardImpl implements _NoteCard {
   _$NoteCardImpl({required this.title, required this.note});
+
+  factory _$NoteCardImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NoteCardImplFromJson(json);
 
   @override
   String title;
@@ -121,11 +129,21 @@ class _$NoteCardImpl implements _NoteCard {
   @pragma('vm:prefer-inline')
   _$$NoteCardImplCopyWith<_$NoteCardImpl> get copyWith =>
       __$$NoteCardImplCopyWithImpl<_$NoteCardImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$NoteCardImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _NoteCard implements NoteCard {
   factory _NoteCard({required String title, required String note}) =
       _$NoteCardImpl;
+
+  factory _NoteCard.fromJson(Map<String, dynamic> json) =
+      _$NoteCardImpl.fromJson;
 
   @override
   String get title;
