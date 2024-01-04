@@ -1,11 +1,10 @@
-class ImageCard{
-  final String title;
-  final String? note;
-  final int id;
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'note_card_model.freezed.dart';
+@unfreezed
+class NoteCard with _$NoteCard{
 
-  ImageCard({
-    required this.title,
-    required this.id,
-    required this.note
-  });
+  factory NoteCard({
+    required String title,
+    required String note
+  })= _NoteCard;
 }

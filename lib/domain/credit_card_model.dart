@@ -1,26 +1,19 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:wallet/domain/bank_model.dart';
 
-class CreditCard{
-  final String title;
-  final String name;
-  final String number;
-  final String cvv2;
-  final String exp;
-  final String? shba;
-  final String? pass;
-  final String? note;
-  final Bank bank;
+part 'credit_card_model.freezed.dart';
 
-
-  CreditCard({
-    required this.title,
-    required this.name,
-    required this.number,
-    required this.cvv2,
-    required this.exp,
-    this.shba,
-    this.pass,
-    this.note,
-    required this.bank,
-  });
+@unfreezed
+class CreditCard with _$CreditCard {
+  factory CreditCard({
+    required String title,
+    required String name,
+    required String number,
+    required String cvv2,
+    required String exp,
+    required String shba,
+    required String pass,
+    required String note,
+    required Bank bank,
+  }) = _CreditCard;
 }

@@ -1,9 +1,11 @@
-class Bank{
-  final String name;
-  final int? code;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  Bank({
-    required this.name,
-    this.code,
-  });
+part 'bank_model.freezed.dart';
+
+@freezed
+class Bank with _$Bank {
+  const factory Bank({
+    required String name,
+    required String code,
+  }) = _Bank;
 }
