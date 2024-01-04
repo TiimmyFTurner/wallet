@@ -18,5 +18,9 @@
   "copy": "Copy",
   "cardNumber": "Card Number",
   "cardNumberCopyMessage": "The card number was copied!",
-  "shbaCopyMessage": "The SHBA was copied!"
+  "shbaCopyMessage": "The SHBA was copied!",
+  "addItem": "Add Item",
+  "creditCard": "Credit Card",
+  "imageCard": "Image Card",
+  "noteCard": "Note Card"
 }

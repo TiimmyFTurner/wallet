@@ -18,5 +18,9 @@
   "copy": "کپی",
   "cardNumber": "شماره کارت",
   "cardNumberCopyMessage": "شماره کارت کپی شد!",
-  "shbaCopyMessage": "شماره شبا کپی شد!"
+  "shbaCopyMessage": "شماره شبا کپی شد!",
+  "addItem": "اضافه کردن",
+  "creditCard": "کارت بانکی",
+  "imageCard": "تصویر",
+  "noteCard": "یادداشت"
 }
