@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:wallet/presentation/pages/home_page.dart';
+import 'package:go_router/go_router.dart';
+import 'package:wallet/presentation/screens/add_credit_card_screen.dart';
+import 'package:wallet/presentation/screens/home_screen.dart';
 
-final routes = {
-  '/home': (context) => HomePage(),
-};
 
-Route<dynamic>? generateRoute(RouteSettings settings){
-  final builder = routes[settings.name];
-  if(builder != null) {
-    return MaterialPageRoute(builder: builder);
-  }
-  return null;
-}
+final GoRouter router = GoRouter(routes: <RouteBase>[
+  GoRoute(path: '/',builder: (BuildContext context, GoRouterState state){
+    return const HomeScreen();
 
+  },routes: <RouteBase>[
+    GoRoute(
+      path: 'addCreditCard',
+      builder: (BuildContext context, GoRouterState state) {
+        return const AddCreditCardScreen();
+      },
+    ),
+  ],)
+]);

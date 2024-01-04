@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wallet/application/state_management/shared_preferences_provider.dart';
 import 'package:wallet/infrastructure/router.dart';
 import 'package:wallet/l10n/l10n.dart';
-import 'package:wallet/presentation/pages/home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,8 +24,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      onGenerateRoute: generateRoute,
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -40,7 +39,6 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate
       ],
-      home: HomePage(),
     );
   }
 }
