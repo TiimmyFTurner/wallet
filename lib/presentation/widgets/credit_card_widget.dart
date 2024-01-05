@@ -12,6 +12,9 @@ class CreditCardWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    String number = creditCard.number;
+    String showNumber =
+        "${number.substring(0, 4)}  ${number.substring(4, 8)}  ${number.substring(8, 12)}  ${number.substring(12, 16)}";
     return Card(
       shadowColor: Colors.transparent,
       child: Stack(
@@ -89,7 +92,8 @@ class CreditCardWidget extends ConsumerWidget {
                         const SizedBox(height: 10),
                         Center(
                           child: Text(
-                            creditCard.number,
+                            textDirection: TextDirection.ltr,
+                            showNumber,
                             style: const TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
@@ -208,7 +212,7 @@ class CreditCardWidget extends ConsumerWidget {
                       child: FilledButton.tonal(
                         onPressed: () => {
                           Clipboard.setData(
-                              ClipboardData(text: creditCard.shba!)),
+                              ClipboardData(text: creditCard.shba)),
                           Navigator.pop(context),
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -231,7 +235,7 @@ class CreditCardWidget extends ConsumerWidget {
                       child: FilledButton.tonal(
                         onPressed: () async {
                           Navigator.pop(context);
-                          await Share.share(creditCard.shba!);
+                          await Share.share(creditCard.shba);
                         },
                         child: Text(
                           AppLocalizations.of(context)!.share,
@@ -266,7 +270,7 @@ class CreditCardWidget extends ConsumerWidget {
               ),
             ),
             Text(
-              creditCard.shba!,
+              creditCard.shba,
               style: const TextStyle(
                 fontSize: 20,
               ),
@@ -284,7 +288,7 @@ class CreditCardWidget extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                creditCard.note!,
+                creditCard.note,
                 textAlign: TextAlign.justify,
                 style: const TextStyle(
                   fontSize: 20,
@@ -304,7 +308,7 @@ class CreditCardWidget extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: Text(
-                creditCard.pass!,
+                creditCard.pass,
                 textAlign: TextAlign.justify,
                 style: const TextStyle(
                   fontSize: 20,

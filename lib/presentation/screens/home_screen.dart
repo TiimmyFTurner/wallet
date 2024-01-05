@@ -15,7 +15,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-@override
+  @override
   Widget build(BuildContext context) {
     var cards = ref.watch(creditCardsProvider);
     print(cards.length.toString());
@@ -33,13 +33,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         shba: "IR062960000000100324200001");
 
     return Scaffold(
-      body: ListView.builder
-        (
+      body: ListView.builder(
+          padding: const EdgeInsets.only(bottom: 75),
           itemCount: cards.length,
           itemBuilder: (BuildContext context, int index) {
             return CreditCardWidget(cards[index]);
-          }
-      ),
+          }),
       appBar: AppBar(title: Text(AppLocalizations.of(context)!.wallet)),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
