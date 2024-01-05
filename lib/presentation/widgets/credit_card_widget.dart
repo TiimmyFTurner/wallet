@@ -19,7 +19,7 @@ class CreditCardWidget extends ConsumerWidget {
           Image(
             image: AssetImage('assets/bank_logos/${creditCard.bank.name}.png'),
             height: 75,
-            opacity: const AlwaysStoppedAnimation(.35),
+            opacity: const AlwaysStoppedAnimation(.45),
           ),
           Container(
             decoration: const BoxDecoration(
