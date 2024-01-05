@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 import 'package:wallet/application/state_management/credit_cards_provider.dart';
 import 'package:wallet/domain/credit_card_model.dart';
 import 'package:wallet/infrastructure/data/bank_data.dart';
 import 'package:wallet/presentation/widgets/credit_card_widget.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+@override
+  Widget build(BuildContext context) {
+    var cards = ref.watch(creditCardsProvider);
+    print(cards.length.toString());
     final creditCard = CreditCard(
-        id: 0,
+        id: '0',
         title: "کارت مغازه",
         name: "ممد خیارزاده گوجه سان",
         number: "1234  1234  1234  1234",
@@ -25,7 +33,13 @@ class HomeScreen extends ConsumerWidget {
         shba: "IR062960000000100324200001");
 
     return Scaffold(
-      body: CreditCardWidget(creditCard),
+      body: ListView.builder
+        (
+          itemCount: cards.length,
+          itemBuilder: (BuildContext context, int index) {
+            return CreditCardWidget(cards[index]);
+          }
+      ),
       appBar: AppBar(title: Text(AppLocalizations.of(context)!.wallet)),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
@@ -57,8 +71,9 @@ class HomeScreen extends ConsumerWidget {
               child: SizedBox(
                 height: 56,
                 child: FilledButton.tonal(
-                  onPressed: () => {
-
+                  onPressed: () {
+                    context.pop();
+                    context.go('/addCreditCard');
                   },
                   child: Text(
                     AppLocalizations.of(context)!.creditCard,
