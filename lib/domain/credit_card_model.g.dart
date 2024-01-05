@@ -8,7 +8,7 @@ part of 'credit_card_model.dart';
 
 _$CreditCardImpl _$$CreditCardImplFromJson(Map<String, dynamic> json) =>
     _$CreditCardImpl(
-      id: json['id'] as int,
+      id: json['id'] as String,
       title: json['title'] as String,
       name: json['name'] as String,
       number: json['number'] as String,

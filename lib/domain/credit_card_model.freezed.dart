@@ -20,8 +20,8 @@ CreditCard _$CreditCardFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CreditCard {
-  int get id => throw _privateConstructorUsedError;
-  set id(int value) => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  set id(String value) => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   set title(String value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $CreditCardCopyWith<$Res> {
       _$CreditCardCopyWithImpl<$Res, CreditCard>;
   @useResult
   $Res call(
-      {int id,
+      {String id,
       String title,
       String name,
       String number,
@@ -96,7 +96,7 @@ class _$CreditCardCopyWithImpl<$Res, $Val extends CreditCard>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -154,7 +154,7 @@ abstract class _$$CreditCardImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {String id,
       String title,
       String name,
       String number,
@@ -195,7 +195,7 @@ class __$$CreditCardImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -255,7 +255,7 @@ class _$CreditCardImpl implements _CreditCard {
       _$$CreditCardImplFromJson(json);
 
   @override
-  int id;
+  String id;
   @override
   String title;
   @override
@@ -296,7 +296,7 @@ class _$CreditCardImpl implements _CreditCard {
 
 abstract class _CreditCard implements CreditCard {
   factory _CreditCard(
-      {required int id,
+      {required String id,
       required String title,
       required String name,
       required String number,
@@ -311,8 +311,8 @@ abstract class _CreditCard implements CreditCard {
       _$CreditCardImpl.fromJson;
 
   @override
-  int get id;
-  set id(int value);
+  String get id;
+  set id(String value);
   @override
   String get title;
   set title(String value);
