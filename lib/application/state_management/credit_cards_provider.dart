@@ -14,12 +14,15 @@ class CreditCards extends _$CreditCards {
     _prefs = ref.watch(sharedPreferencesProvider);
     final storedString = _prefs.getString('credit_cards_list');
     if (storedString != null) {
-      final individualJsons = storedString.split(',');
+      final individualJsons = storedString.split('|');
       final deserializedList =
           individualJsons.map((json) => jsonDecode(json)).toList();
-      final creditCardsList =
-          deserializedList.map((card) => CreditCard.fromJson(card));
-      return creditCardsList;
+      List<CreditCard> creditCardList = [];
+      for (final item in deserializedList) {
+        CreditCard cc = CreditCard.fromJson(item);
+        creditCardList.add(cc);
+      }
+      return creditCardList;
     }
     return [];
   }
@@ -31,9 +34,8 @@ class CreditCards extends _$CreditCards {
 
   void addCreditCard(CreditCard creditCard) {
     state = [...state, creditCard];
-
-    final jsonList = state.map((card) => card.toJson());
-    final joinedString = jsonList.join(',');
+    final jsonList = state.map((card) => jsonEncode(card.toJson()));
+    final joinedString = jsonList.join('|');
     _prefs.setString('credit_cards_list', joinedString);
   }
 
@@ -43,25 +45,9 @@ class CreditCards extends _$CreditCards {
         if (card != creditCard) card,
     ];
     if (state != []) {
-      final jsonList = state.map((card) => card.toJson());
-      final joinedString = jsonList.join(',');
+      final jsonList = state.map((card) => jsonEncode(card.toJson()));
+      final joinedString = jsonList.join('|');
       _prefs.setString('credit_cards_list', joinedString);
     }
   }
-
-// Let's mark a todo as completed
-// void toggle(String todoId) {
-//   state = [
-//     for (final todo in state)
-//     // we're marking only the matching todo as completed
-//       if (todo.id == todoId)
-//       // Once more, since our state is immutable, we need to make a copy
-//       // of the todo. We're using our `copyWith` method implemented before
-//       // to help with that.
-//         todo.copyWith(completed: !todo.completed)
-//       else
-//       // other todos are not modified
-//         todo,
-//   ];
-// }
 }
