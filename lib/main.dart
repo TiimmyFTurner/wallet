@@ -1,3 +1,4 @@
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wallet/application/state_management/shared_preferences_provider.dart';
@@ -24,21 +25,44 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: router,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      supportedLocales: L10n.all,
-      locale: const Locale('fa'),
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate
-      ],
-    );
+    return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
+      return MaterialApp.router(
+        routerConfig: router,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: lightColorScheme ?? ColorScheme.fromSeed(seedColor: Colors.amberAccent),
+          useMaterial3: true,
+        ),
+        darkTheme: ThemeData(
+          colorScheme: darkColorScheme ?? ColorScheme.fromSeed(seedColor: Colors.amberAccent),
+          useMaterial3: true,
+        ),
+        themeMode: ThemeMode.system,
+        supportedLocales: L10n.all,
+        locale: const Locale('fa'),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate
+        ],
+      );
+    });
+    // return MaterialApp.router(
+    //   routerConfig: router,
+    //   title: 'Flutter Demo',
+    //   theme: ThemeData(
+    //     // colorScheme: ColorScheme.fromSeed(seedColor: Colors.amberAccent),
+    //     useMaterial3: true,
+    //   ),
+    //   supportedLocales: L10n.all,
+    //   locale: const Locale('fa'),
+    //   localizationsDelegates: const [
+    //     AppLocalizations.delegate,
+    //     GlobalMaterialLocalizations.delegate,
+    //     GlobalWidgetsLocalizations.delegate,
+    //     GlobalCupertinoLocalizations.delegate
+    //   ],
+    // );
   }
 }
