@@ -417,13 +417,86 @@ class CreditCardWidget extends ConsumerWidget {
                             bottom: Radius.circular(16)),
                       )),
                   onPressed: () {
-                    ref
-                        .read(creditCardsProvider.notifier)
-                        .removeCreditCard(creditCard.id);
                     context.pop();
+                    deleteBottomSheet(context,ref);
                   },
                   child: Text(
                     AppLocalizations.of(context)!.delete,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 36)
+          ],
+        );
+      },
+    );
+  }
+  deleteBottomSheet(context, ref) {
+    showModalBottomSheet<void>(
+      showDragHandle: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Icon(
+              Icons.delete_outline,
+              size: 36,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+            const SizedBox(height: 12),
+            Text(
+              textAlign: TextAlign.center,
+              AppLocalizations.of(context)!.deleteCreditCardQuestion,
+              style: const TextStyle(fontSize: 30),
+            ),
+            const SizedBox(height: 24),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 36),
+              child: SizedBox(
+                height: 56,
+                child: FilledButton.tonal(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                    Theme.of(context).colorScheme.errorContainer,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(16), bottom: Radius.circular(4)),
+                    ),
+                  ),
+                  onPressed: () {
+                    context.pop();
+                    ref
+                        .read(creditCardsProvider.notifier)
+                        .removeCreditCard(creditCard.id);
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.delete,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 6),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 36),
+              child: SizedBox(
+                height: 56,
+                child: FilledButton.tonal(
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(4), bottom: Radius.circular(16)),
+                    ),
+                  ),
+                  onPressed: () {
+                    context.pop();
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.no,
                     style: const TextStyle(fontSize: 20),
                   ),
                 ),
