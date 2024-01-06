@@ -15,37 +15,61 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+  int currentPageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     var cards = ref.watch(creditCardsProvider);
-    print(cards.length.toString());
-    final creditCard = CreditCard(
-        id: '0',
-        title: "کارت مغازه",
-        name: "ممد خیارزاده گوجه سان",
-        number: "1234  1234  1234  1234",
-        cvv2: "4354",
-        exp: "08/01",
-        bank: banks[6],
-        note:
-            "  شیسا بنتاش  شمنت اشس لیبتنشلس ت تشس لتلس شیتل شسیتبل سش تش لیتلشسیتبل تش ت اشسییتبلشست ل شسیل بتشسلا بت لای لای لالای یمنب شمک بانشتسیا بنتشسای منتشاسی ب",
-        pass: "121212",
-        shba: "IR062960000000100324200001");
 
     return Scaffold(
-      body: ListView.builder(
-          padding: const EdgeInsets.only(bottom: 75),
-          itemCount: cards.length,
-          itemBuilder: (BuildContext context, int index) {
-            return CreditCardWidget(cards[index]);
-          }),
-      appBar: AppBar(title: Text(AppLocalizations.of(context)!.wallet)),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () => {addItemBottomSheet(context)},
-      ),
-    );
-    //throw UnimplementedError();
+        appBar: AppBar(title: Text(AppLocalizations.of(context)!.wallet)),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () => {addItemBottomSheet(context)},
+        ),
+        bottomNavigationBar: NavigationBar(
+          height: 70,
+          onDestinationSelected: (int index) {
+            setState(() => currentPageIndex = index);
+          },
+          selectedIndex: currentPageIndex,
+          destinations: <Widget>[
+            NavigationDestination(
+              icon: const Icon(Icons.credit_card),
+              label: AppLocalizations.of(context)!.creditCard,
+            ),
+            NavigationDestination(
+              selectedIcon: const Icon(Icons.image),
+              icon: const Icon(Icons.image_outlined),
+              label: AppLocalizations.of(context)!.imageCard,
+            ),
+            NavigationDestination(
+              selectedIcon: const Icon(Icons.note),
+              icon: const Icon(Icons.note_outlined),
+              label: AppLocalizations.of(context)!.noteCard,
+            ),
+          ],
+        ),
+        body: <Widget>[
+          ListView.builder(
+              padding: const EdgeInsets.only(bottom: 75),
+              itemCount: cards.length,
+              itemBuilder: (BuildContext context, int index) {
+                return CreditCardWidget(cards[index]);
+              }),
+          ListView.builder(
+              padding: const EdgeInsets.only(bottom: 75),
+              itemCount: cards.length,
+              itemBuilder: (BuildContext context, int index) {
+                return CreditCardWidget(cards[index]);
+              }),
+          ListView.builder(
+              padding: const EdgeInsets.only(bottom: 75),
+              itemCount: cards.length,
+              itemBuilder: (BuildContext context, int index) {
+                return CreditCardWidget(cards[index]);
+              }),
+        ][currentPageIndex]);
   }
 
   addItemBottomSheet(context) {
