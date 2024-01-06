@@ -334,10 +334,15 @@ class CreditCardWidget extends ConsumerWidget {
                 color: Theme.of(context).colorScheme.surfaceVariant,
                 child: Padding(
                   padding: const EdgeInsets.all(12),
-                  child: Text(
-                    creditCard.note,
-                    textAlign: TextAlign.justify,
-                    style: const TextStyle(fontSize: 20),
+                  child: SizedBox(
+                    height: 150,
+                    child: SingleChildScrollView(
+                      child: Text(
+                        creditCard.note,
+                        textAlign: TextAlign.justify,
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
                   ),
                 ),
               ),
