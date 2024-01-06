@@ -33,5 +33,10 @@
   "cantBeLessThan3": "طول این ورودی نمیتواند کمتر از سه باشد",
   "mustBe16": "طول شماره کارت باید شانزده رقم باشد",
   "edit": "ویرایش",
-  "delete": "حذف"
+  "delete": "حذف",
+  "addNoteCard": "اضافه کردن یادداشت",
+  "deleteNoteCardQuestion": "حذف یادداشت؟",
+  "deleteCreditCardQuestion": "حذف کارت؟",
+  "no": "خیر"
+
 }

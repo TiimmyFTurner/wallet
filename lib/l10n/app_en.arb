@@ -33,6 +33,9 @@
   "cantBeLessThan3": "The length of this field cant be less than 3",
   "mustBe16": "the length of this field must be 16",
   "edit": "Edit",
-  "delete": "Delete"
-
+  "delete": "Delete",
+  "addNoteCard": "Add Note Card",
+  "deleteNoteCardQuestion": "Delete Note Card?",
+  "deleteCreditCardQuestion": "Delete Credit Card?",
+  "no": "No"
 }

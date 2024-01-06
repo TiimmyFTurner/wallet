@@ -3,9 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet/application/state_management/credit_cards_provider.dart';
+import 'package:wallet/application/state_management/note_cards_provider.dart';
 import 'package:wallet/domain/credit_card_model.dart';
-import 'package:wallet/infrastructure/data/bank_data.dart';
+import 'package:wallet/domain/note_card_model.dart';
 import 'package:wallet/presentation/widgets/credit_card_widget.dart';
+import 'package:wallet/presentation/widgets/note_card_widget.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -19,7 +21,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var cards = ref.watch(creditCardsProvider);
+    List<CreditCard> creditCards = ref.watch(creditCardsProvider);
+    List<NoteCard> noteCards = ref.watch(noteCardsProvider);
 
     return Scaffold(
         appBar: AppBar(title: Text(AppLocalizations.of(context)!.wallet)),
@@ -53,21 +56,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         body: <Widget>[
           ListView.builder(
               padding: const EdgeInsets.only(bottom: 75),
-              itemCount: cards.length,
+              itemCount: creditCards.length,
               itemBuilder: (BuildContext context, int index) {
-                return CreditCardWidget(cards[index]);
+                return CreditCardWidget(creditCards[index]);
               }),
           ListView.builder(
               padding: const EdgeInsets.only(bottom: 75),
-              itemCount: cards.length,
+              itemCount: creditCards.length,
               itemBuilder: (BuildContext context, int index) {
-                return CreditCardWidget(cards[index]);
+                return CreditCardWidget(creditCards[index]);
               }),
           ListView.builder(
               padding: const EdgeInsets.only(bottom: 75),
-              itemCount: cards.length,
+              itemCount: noteCards.length,
               itemBuilder: (BuildContext context, int index) {
-                return CreditCardWidget(cards[index]);
+                return NoteCardWidget(noteCards[index]);
               }),
         ][currentPageIndex]);
   }
@@ -145,7 +148,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           top: Radius.circular(4), bottom: Radius.circular(16)),
                     ),
                   ),
-                  onPressed: () => {},
+                  onPressed: () {
+                    context.pop();
+                    context.go('/addNoteCard');
+                  },
                   child: Text(
                     AppLocalizations.of(context)!.noteCard,
                     style: const TextStyle(fontSize: 20),
