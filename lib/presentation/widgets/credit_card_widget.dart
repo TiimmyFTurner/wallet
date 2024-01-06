@@ -18,7 +18,10 @@ class CreditCardWidget extends ConsumerWidget {
     String showNumber =
         "${number.substring(0, 4)}  ${number.substring(4, 8)}  ${number.substring(8, 12)}  ${number.substring(12, 16)}";
     return GestureDetector(
-      onLongPress: () => longPressBottomSheet(context, ref),
+      onLongPress: () {
+        HapticFeedback.lightImpact();
+        longPressBottomSheet(context, ref);
+      },
       child: Card(
         shadowColor: Colors.transparent,
         child: Stack(
