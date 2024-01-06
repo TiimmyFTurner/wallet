@@ -27,6 +27,14 @@ class CreditCards extends _$CreditCards {
     return [];
   }
 
+  void _saveSharedPreferences() {
+    if (state != []) {
+      final jsonList = state.map((card) => jsonEncode(card.toJson()));
+      final joinedString = jsonList.join('|');
+      _prefs.setString('credit_cards_list', joinedString);
+    }
+  }
+
   @override
   List<CreditCard> build() {
     return _fetchCards();
@@ -34,20 +42,22 @@ class CreditCards extends _$CreditCards {
 
   void addCreditCard(CreditCard creditCard) {
     state = [...state, creditCard];
-    final jsonList = state.map((card) => jsonEncode(card.toJson()));
-    final joinedString = jsonList.join('|');
-    _prefs.setString('credit_cards_list', joinedString);
+    _saveSharedPreferences();
   }
 
-  void removeCreditCard(CreditCard creditCard) {
+  void removeCreditCard(String creditCardId) {
     state = [
       for (final card in state)
-        if (card != creditCard) card,
+        if (card.id != creditCardId) card,
     ];
-    if (state != []) {
-      final jsonList = state.map((card) => jsonEncode(card.toJson()));
-      final joinedString = jsonList.join('|');
-      _prefs.setString('credit_cards_list', joinedString);
-    }
+    _saveSharedPreferences();
+  }
+
+  void editCreditCard(CreditCard creditCard) {
+    state = [
+      for (final card in state)
+        if (card.id == creditCard.id) creditCard else card
+    ];
+    _saveSharedPreferences();
   }
 }
