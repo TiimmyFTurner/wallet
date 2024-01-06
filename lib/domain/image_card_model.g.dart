@@ -9,7 +9,7 @@ part of 'image_card_model.dart';
 _$ImageCardImpl _$$ImageCardImplFromJson(Map<String, dynamic> json) =>
     _$ImageCardImpl(
       json['note'] as String,
-      id: json['id'] as int,
+      id: json['id'] as String,
       title: json['title'] as String,
     );
 

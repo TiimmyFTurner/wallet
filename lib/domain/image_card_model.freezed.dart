@@ -22,8 +22,8 @@ ImageCard _$ImageCardFromJson(Map<String, dynamic> json) {
 mixin _$ImageCard {
   String get note => throw _privateConstructorUsedError;
   set note(String value) => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
-  set id(int value) => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  set id(String value) => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   set title(String value) => throw _privateConstructorUsedError;
 
@@ -38,7 +38,7 @@ abstract class $ImageCardCopyWith<$Res> {
   factory $ImageCardCopyWith(ImageCard value, $Res Function(ImageCard) then) =
       _$ImageCardCopyWithImpl<$Res, ImageCard>;
   @useResult
-  $Res call({String note, int id, String title});
+  $Res call({String note, String id, String title});
 }
 
 /// @nodoc
@@ -66,7 +66,7 @@ class _$ImageCardCopyWithImpl<$Res, $Val extends ImageCard>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -83,7 +83,7 @@ abstract class _$$ImageCardImplCopyWith<$Res>
       __$$ImageCardImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String note, int id, String title});
+  $Res call({String note, String id, String title});
 }
 
 /// @nodoc
@@ -109,7 +109,7 @@ class __$$ImageCardImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -129,7 +129,7 @@ class _$ImageCardImpl implements _ImageCard {
   @override
   String note;
   @override
-  int id;
+  String id;
   @override
   String title;
 
@@ -153,7 +153,7 @@ class _$ImageCardImpl implements _ImageCard {
 }
 
 abstract class _ImageCard implements ImageCard {
-  factory _ImageCard(String note, {required int id, required String title}) =
+  factory _ImageCard(String note, {required String id, required String title}) =
       _$ImageCardImpl;
 
   factory _ImageCard.fromJson(Map<String, dynamic> json) =
@@ -163,8 +163,8 @@ abstract class _ImageCard implements ImageCard {
   String get note;
   set note(String value);
   @override
-  int get id;
-  set id(int value);
+  String get id;
+  set id(String value);
   @override
   String get title;
   set title(String value);

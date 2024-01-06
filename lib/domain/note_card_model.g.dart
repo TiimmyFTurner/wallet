@@ -8,7 +8,7 @@ part of 'note_card_model.dart';
 
 _$NoteCardImpl _$$NoteCardImplFromJson(Map<String, dynamic> json) =>
     _$NoteCardImpl(
-      id: json['id'] as int,
+      id: json['id'] as String,
       title: json['title'] as String,
       note: json['note'] as String,
     );

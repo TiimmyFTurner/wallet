@@ -20,8 +20,8 @@ NoteCard _$NoteCardFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NoteCard {
-  int get id => throw _privateConstructorUsedError;
-  set id(int value) => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  set id(String value) => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   set title(String value) => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $NoteCardCopyWith<$Res> {
   factory $NoteCardCopyWith(NoteCard value, $Res Function(NoteCard) then) =
       _$NoteCardCopyWithImpl<$Res, NoteCard>;
   @useResult
-  $Res call({int id, String title, String note});
+  $Res call({String id, String title, String note});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$NoteCardCopyWithImpl<$Res, $Val extends NoteCard>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -83,7 +83,7 @@ abstract class _$$NoteCardImplCopyWith<$Res>
       __$$NoteCardImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String title, String note});
+  $Res call({String id, String title, String note});
 }
 
 /// @nodoc
@@ -105,7 +105,7 @@ class __$$NoteCardImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -127,7 +127,7 @@ class _$NoteCardImpl implements _NoteCard {
       _$$NoteCardImplFromJson(json);
 
   @override
-  int id;
+  String id;
   @override
   String title;
   @override
@@ -154,7 +154,7 @@ class _$NoteCardImpl implements _NoteCard {
 
 abstract class _NoteCard implements NoteCard {
   factory _NoteCard(
-      {required int id,
+      {required String id,
       required String title,
       required String note}) = _$NoteCardImpl;
 
@@ -162,8 +162,8 @@ abstract class _NoteCard implements NoteCard {
       _$NoteCardImpl.fromJson;
 
   @override
-  int get id;
-  set id(int value);
+  String get id;
+  set id(String value);
   @override
   String get title;
   set title(String value);
