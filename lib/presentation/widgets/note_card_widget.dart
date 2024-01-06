@@ -14,7 +14,6 @@ class NoteCardWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-
       child: Card(
         shadowColor: Colors.transparent,
         child: Container(
@@ -54,7 +53,11 @@ class NoteCardWidget extends ConsumerWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
+                    IconButton(
+                        onPressed: () {
+                          context.go('/editNoteCard/${noteCard.id}');
+                        },
+                        icon: const Icon(Icons.edit)),
                     IconButton(
                         onPressed: () => deleteBottomSheet(context, ref),
                         icon: const Icon(Icons.delete)),
