@@ -57,19 +57,29 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Text(
-                AppLocalizations.of(context)!.addItem,
-                style: const TextStyle(fontSize: 30),
-              ),
+            Icon(
+              Icons.add_card_outlined,
+              size: 36,
+              color: Theme.of(context).colorScheme.secondary,
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
+            Text(
+              textAlign: TextAlign.center,
+              AppLocalizations.of(context)!.addItem,
+              style: const TextStyle(fontSize: 30),
+            ),
+            const SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 36),
               child: SizedBox(
                 height: 56,
                 child: FilledButton.tonal(
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(16), bottom: Radius.circular(4)),
+                    ),
+                  ),
                   onPressed: () {
                     context.pop();
                     context.go('/addCreditCard');
@@ -81,12 +91,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 6),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 36),
               child: SizedBox(
                 height: 56,
                 child: FilledButton.tonal(
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4))),
+                  ),
                   onPressed: () => {},
                   child: Text(
                     AppLocalizations.of(context)!.imageCard,
@@ -95,12 +109,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 6),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 36),
               child: SizedBox(
                 height: 56,
                 child: FilledButton.tonal(
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(4), bottom: Radius.circular(16)),
+                    ),
+                  ),
                   onPressed: () => {},
                   child: Text(
                     AppLocalizations.of(context)!.noteCard,
