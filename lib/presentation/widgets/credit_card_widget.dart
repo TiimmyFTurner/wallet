@@ -158,13 +158,20 @@ class CreditCardWidget extends ConsumerWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 36),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Row(
                 children: [
                   Expanded(
                     child: SizedBox(
                       height: 56,
                       child: FilledButton.tonal(
+                        style: ElevatedButton.styleFrom(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.horizontal(
+                                right: Radius.circular(16),
+                                left: Radius.circular(4)),
+                          ),
+                        ),
                         onPressed: () => {
                           Clipboard.setData(
                               ClipboardData(text: creditCard.number)),
@@ -183,11 +190,18 @@ class CreditCardWidget extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: 6),
                   Expanded(
                     child: SizedBox(
                       height: 56,
                       child: FilledButton.tonal(
+                        style: ElevatedButton.styleFrom(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.horizontal(
+                                left: Radius.circular(16),
+                                right: Radius.circular(4)),
+                          ),
+                        ),
                         onPressed: () async {
                           Navigator.pop(context);
                           await Share.share(creditCard.number);
@@ -209,13 +223,20 @@ class CreditCardWidget extends ConsumerWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 36),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Row(
                 children: [
                   Expanded(
                     child: SizedBox(
                       height: 56,
                       child: FilledButton.tonal(
+                        style: ElevatedButton.styleFrom(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.horizontal(
+                                left: Radius.circular(4),
+                                right: Radius.circular(16)),
+                          ),
+                        ),
                         onPressed: () => {
                           Clipboard.setData(
                               ClipboardData(text: creditCard.shba)),
@@ -234,11 +255,18 @@ class CreditCardWidget extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: 6),
                   Expanded(
                     child: SizedBox(
                       height: 56,
                       child: FilledButton.tonal(
+                        style: ElevatedButton.styleFrom(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.horizontal(
+                                left: Radius.circular(16),
+                                right: Radius.circular(4)),
+                          ),
+                        ),
                         onPressed: () async {
                           Navigator.pop(context);
                           await Share.share(creditCard.shba);
@@ -265,63 +293,76 @@ class CreditCardWidget extends ConsumerWidget {
       showDragHandle: true,
       context: context,
       builder: (BuildContext context) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              AppLocalizations.of(context)!.shba,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                AppLocalizations.of(context)!.shba,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            Text(
-              creditCard.shba,
-              style: const TextStyle(
-                fontSize: 20,
+              Card(
+                elevation: 0,
+                color: Theme.of(context).colorScheme.surfaceVariant,
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Text(
+                    creditCard.shba,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: Text(
+              const SizedBox(height: 16),
+              Text(
                 AppLocalizations.of(context)!.note,
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                creditCard.note,
-                textAlign: TextAlign.justify,
-                style: const TextStyle(
-                  fontSize: 20,
+              Card(
+                elevation: 0,
+                color: Theme.of(context).colorScheme.surfaceVariant,
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Text(
+                    creditCard.note,
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(fontSize: 20),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: Text(
+              const SizedBox(height: 16),
+              Text(
                 AppLocalizations.of(context)!.password,
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Text(
-                creditCard.pass,
-                textAlign: TextAlign.justify,
-                style: const TextStyle(
-                  fontSize: 20,
+              Card(
+                elevation: 0,
+                color: Theme.of(context).colorScheme.surfaceVariant,
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Text(
+                    creditCard.pass,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 24),
+            ],
+          ),
         );
       },
     );
@@ -336,12 +377,17 @@ class CreditCardWidget extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 36),
               child: SizedBox(
-                height: 56,
+                height: 60,
                 child: FilledButton.tonal(
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(16), bottom: Radius.circular(4)),
+                    ),
+                  ),
                   onPressed: () {
                     context.pop();
                     context.go('/editCreditCard/${creditCard.id}');
@@ -353,17 +399,20 @@ class CreditCardWidget extends ConsumerWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 6),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 36),
               child: SizedBox(
-                height: 56,
+                height: 60,
                 child: FilledButton.tonal(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                      Theme.of(context).colorScheme.errorContainer,
-                    ),
-                  ),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          Theme.of(context).colorScheme.errorContainer,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(4),
+                            bottom: Radius.circular(16)),
+                      )),
                   onPressed: () {
                     ref
                         .read(creditCardsProvider.notifier)
@@ -377,8 +426,7 @@ class CreditCardWidget extends ConsumerWidget {
                 ),
               ),
             ),
-
-            const SizedBox(height: 24)
+            const SizedBox(height: 36)
           ],
         );
       },
