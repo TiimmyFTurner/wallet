@@ -31,6 +31,8 @@
   "month": "Month",
   "year": "Year",
   "cantBeLessThan3": "The length of this field cant be less than 3",
-  "mustBe16": "the length of this field must be 16"
+  "mustBe16": "the length of this field must be 16",
+  "edit": "Edit",
+  "delete": "Delete"
 
 }

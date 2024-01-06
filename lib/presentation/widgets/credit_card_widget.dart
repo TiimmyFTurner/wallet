@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:wallet/application/state_management/credit_cards_provider.dart';
 import 'package:wallet/domain/credit_card_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:share_plus/share_plus.dart';
@@ -15,114 +17,118 @@ class CreditCardWidget extends ConsumerWidget {
     String number = creditCard.number;
     String showNumber =
         "${number.substring(0, 4)}  ${number.substring(4, 8)}  ${number.substring(8, 12)}  ${number.substring(12, 16)}";
-    return Card(
-      shadowColor: Colors.transparent,
-      child: Stack(
-        children: [
-          Image(
-            image: AssetImage('assets/bank_logos/${creditCard.bank.name}.png'),
-            height: 75,
-            opacity: const AlwaysStoppedAnimation(.65),
-          ),
-          Container(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                opacity: .25,
-                image: AssetImage('assets/theme/cardbg.png'),
-              ),
+    return GestureDetector(
+      onLongPress: () => longPressBottomSheet(context, ref),
+      child: Card(
+        shadowColor: Colors.transparent,
+        child: Stack(
+          children: [
+            Image(
+              image:
+                  AssetImage('assets/bank_logos/${creditCard.bank.name}.png'),
+              height: 75,
+              opacity: const AlwaysStoppedAnimation(.55),
             ),
-            child: Theme(
-              data: Theme.of(context).copyWith(
-                shadowColor: Colors.transparent,
-                splashColor: Colors.transparent,
-                dividerColor: Colors.transparent,
-                highlightColor: Colors.transparent,
+            Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  opacity: .15,
+                  image: AssetImage('assets/theme/cardbg.png'),
+                ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: ExpansionTile(
-                  onExpansionChanged: (bool expanding) {
-                    HapticFeedback.lightImpact();
-                  },
-                  title: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          creditCard.title,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      IconButton(
-                          onPressed: () => {copyBottomSheet(context)},
-                          icon: const Icon(Icons.share)),
-                    ],
-                  ),
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  shadowColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  dividerColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: ExpansionTile(
+                    onExpansionChanged: (bool expanding) {
+                      HapticFeedback.lightImpact();
+                    },
+                    title: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const SizedBox(height: 15),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              '   ${creditCard.name}',
+                        Expanded(
+                          child: Text(
+                            creditCard.title,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        IconButton(
+                            onPressed: () => copyBottomSheet(context),
+                            icon: const Icon(Icons.share)),
+                      ],
+                    ),
+                    children: <Widget>[
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const SizedBox(height: 15),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                '   ${creditCard.name}',
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () {
+                                    moreCardDetailBottomSheet(context);
+                                  },
+                                  icon: const Icon(Icons.note)),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Center(
+                            child: Text(
+                              textDirection: TextDirection.ltr,
+                              showNumber,
                               style: const TextStyle(
-                                fontSize: 20,
+                                fontSize: 25,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            IconButton(
-                                onPressed: () {
-                                  moreCardDetailBottomSheet(context);
-                                },
-                                icon: const Icon(Icons.note)),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Center(
-                          child: Text(
-                            textDirection: TextDirection.ltr,
-                            showNumber,
-                            style: const TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                            ),
                           ),
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              '${AppLocalizations.of(context)!.expDate}: ${creditCard.exp}',
-                              style: const TextStyle(fontSize: 18),
-                            ),
-                            Text(
-                              'CVV2: ${creditCard.cvv2}',
-                              style: const TextStyle(fontSize: 18),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 5),
-                      ],
-                    )
-                  ],
+                          const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                '${AppLocalizations.of(context)!.expDate}: ${creditCard.exp}',
+                                style: const TextStyle(fontSize: 18),
+                              ),
+                              Text(
+                                'CVV2: ${creditCard.cvv2}',
+                                style: const TextStyle(fontSize: 18),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 5),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -315,6 +321,64 @@ class CreditCardWidget extends ConsumerWidget {
                 ),
               ),
             ),
+          ],
+        );
+      },
+    );
+  }
+
+  longPressBottomSheet(context, ref) {
+    showModalBottomSheet<void>(
+      showDragHandle: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 36),
+              child: SizedBox(
+                height: 56,
+                child: FilledButton.tonal(
+                  onPressed: () {
+                    context.pop();
+                    context.go('/editCreditCard/${creditCard.id}');
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.edit,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 36),
+              child: SizedBox(
+                height: 56,
+                child: FilledButton.tonal(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                      Theme.of(context).colorScheme.errorContainer,
+                    ),
+                  ),
+                  onPressed: () {
+                    ref
+                        .read(creditCardsProvider.notifier)
+                        .removeCreditCard(creditCard.id);
+                    context.pop();
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.delete,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 24)
           ],
         );
       },
