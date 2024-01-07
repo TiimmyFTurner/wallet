@@ -24,8 +24,8 @@ mixin _$ImageCard {
   set note(String value) => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  set title(String value) => throw _privateConstructorUsedError;
+  String get path => throw _privateConstructorUsedError;
+  set path(String value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +38,7 @@ abstract class $ImageCardCopyWith<$Res> {
   factory $ImageCardCopyWith(ImageCard value, $Res Function(ImageCard) then) =
       _$ImageCardCopyWithImpl<$Res, ImageCard>;
   @useResult
-  $Res call({String note, String id, String title});
+  $Res call({String note, String id, String path});
 }
 
 /// @nodoc
@@ -56,7 +56,7 @@ class _$ImageCardCopyWithImpl<$Res, $Val extends ImageCard>
   $Res call({
     Object? note = null,
     Object? id = null,
-    Object? title = null,
+    Object? path = null,
   }) {
     return _then(_value.copyWith(
       note: null == note
@@ -67,9 +67,9 @@ class _$ImageCardCopyWithImpl<$Res, $Val extends ImageCard>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      path: null == path
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -83,7 +83,7 @@ abstract class _$$ImageCardImplCopyWith<$Res>
       __$$ImageCardImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String note, String id, String title});
+  $Res call({String note, String id, String path});
 }
 
 /// @nodoc
@@ -99,7 +99,7 @@ class __$$ImageCardImplCopyWithImpl<$Res>
   $Res call({
     Object? note = null,
     Object? id = null,
-    Object? title = null,
+    Object? path = null,
   }) {
     return _then(_$ImageCardImpl(
       null == note
@@ -110,9 +110,9 @@ class __$$ImageCardImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      path: null == path
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -121,7 +121,7 @@ class __$$ImageCardImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ImageCardImpl implements _ImageCard {
-  _$ImageCardImpl(this.note, {required this.id, required this.title});
+  _$ImageCardImpl(this.note, {required this.id, required this.path});
 
   factory _$ImageCardImpl.fromJson(Map<String, dynamic> json) =>
       _$$ImageCardImplFromJson(json);
@@ -131,11 +131,11 @@ class _$ImageCardImpl implements _ImageCard {
   @override
   String id;
   @override
-  String title;
+  String path;
 
   @override
   String toString() {
-    return 'ImageCard(note: $note, id: $id, title: $title)';
+    return 'ImageCard(note: $note, id: $id, path: $path)';
   }
 
   @JsonKey(ignore: true)
@@ -153,7 +153,7 @@ class _$ImageCardImpl implements _ImageCard {
 }
 
 abstract class _ImageCard implements ImageCard {
-  factory _ImageCard(String note, {required String id, required String title}) =
+  factory _ImageCard(String note, {required String id, required String path}) =
       _$ImageCardImpl;
 
   factory _ImageCard.fromJson(Map<String, dynamic> json) =
@@ -166,8 +166,8 @@ abstract class _ImageCard implements ImageCard {
   String get id;
   set id(String value);
   @override
-  String get title;
-  set title(String value);
+  String get path;
+  set path(String value);
   @override
   @JsonKey(ignore: true)
   _$$ImageCardImplCopyWith<_$ImageCardImpl> get copyWith =>

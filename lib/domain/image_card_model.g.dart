@@ -10,12 +10,12 @@ _$ImageCardImpl _$$ImageCardImplFromJson(Map<String, dynamic> json) =>
     _$ImageCardImpl(
       json['note'] as String,
       id: json['id'] as String,
-      title: json['title'] as String,
+      path: json['path'] as String,
     );
 
 Map<String, dynamic> _$$ImageCardImplToJson(_$ImageCardImpl instance) =>
     <String, dynamic>{
       'note': instance.note,
       'id': instance.id,
-      'title': instance.title,
+      'path': instance.path,
     };
