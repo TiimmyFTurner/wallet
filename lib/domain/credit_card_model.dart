@@ -9,6 +9,7 @@ part 'credit_card_model.g.dart';
 class CreditCard with _$CreditCard {
   factory CreditCard({
     required String id,
+    required String bgId,
     required String title,
     required String name,
     required String number,

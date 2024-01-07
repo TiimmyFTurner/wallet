@@ -11,7 +11,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class EditCreditCardScreen extends ConsumerStatefulWidget {
   final String cardId;
 
-  const EditCreditCardScreen(this.cardId,{super.key});
+  const EditCreditCardScreen(this.cardId, {super.key});
 
   @override
   EditCreditCardScreenState createState() {
@@ -31,6 +31,7 @@ class EditCreditCardScreenState extends ConsumerState<EditCreditCardScreen> {
   final _noteController = TextEditingController();
   bool _passwordVisible = false;
   late Bank selectedBank;
+  late String _selectedBackground;
 
   @override
   void initState() {
@@ -38,7 +39,8 @@ class EditCreditCardScreenState extends ConsumerState<EditCreditCardScreen> {
         .read(creditCardsProvider)
         .where((element) => element.id == widget.cardId)
         .first;
-     selectedBank = card.bank;
+    selectedBank = card.bank;
+    _selectedBackground = card.bgId;
     _titleController.text = card.title;
     _nameController.text = card.name;
     _numberController.text = card.number;
@@ -46,11 +48,12 @@ class EditCreditCardScreenState extends ConsumerState<EditCreditCardScreen> {
     final expDate = card.exp.split('/');
     _expMonthController.text = expDate[0];
     _expYearController.text = expDate[1];
-    _shbaController.text = ((card.shba != '-') ? card.shba:'');
-    _passController.text = ((card.pass != '-') ? card.pass:'');
-    _noteController.text = ((card.note != '-') ? card.note:'');
+    _shbaController.text = ((card.shba != '-') ? card.shba : '');
+    _passController.text = ((card.pass != '-') ? card.pass : '');
+    _noteController.text = ((card.note != '-') ? card.note : '');
     super.initState();
   }
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -66,12 +69,12 @@ class EditCreditCardScreenState extends ConsumerState<EditCreditCardScreen> {
   }
 
   final _formKey = GlobalKey<FormState>();
-
+  final _backgroundList = List<String>.generate(10, (i) {
+    return (i + 1).toString();
+  });
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -95,19 +98,18 @@ class EditCreditCardScreenState extends ConsumerState<EditCreditCardScreen> {
                   }
                   CreditCard createdCard = CreditCard(
                     id: widget.cardId,
+                    bgId: _selectedBackground,
                     title: _titleController.text,
                     name: _nameController.text,
                     number: _numberController.text,
                     cvv2: _cvv2Controller.text,
                     exp:
-                    "${_expMonthController.text}/${_expYearController.text}",
+                        "${_expMonthController.text}/${_expYearController.text}",
                     shba: _shbaController.text,
                     pass: _passController.text,
                     note: _noteController.text,
                     bank: selectedBank,
                   );
-                  print(createdCard);
-
                   ref
                       .read(creditCardsProvider.notifier)
                       .editCreditCard(createdCard);
@@ -123,6 +125,59 @@ class EditCreditCardScreenState extends ConsumerState<EditCreditCardScreen> {
         key: _formKey,
         child: ListView(
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
+              child: IntrinsicWidth(
+                child: DropdownButtonFormField<String>(
+                  icon: const SizedBox(),
+                  iconSize: 75,
+                  decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: AppLocalizations.of(context)!.background),
+                  value: _selectedBackground,
+                  items: _backgroundList
+                      .map<DropdownMenuItem<String>>((String id) {
+                    return DropdownMenuItem<String>(
+                      value: id,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 75,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage("assets/theme/cardbg${id}.png"),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  selectedItemBuilder: (_) {
+                    return _backgroundList.map<Widget>((String item) {
+                      return Container(
+                        width: 300,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage("assets/theme/cardbg${item}.png"),
+                          ),
+                        ),
+                      );
+                    }).toList();
+                  },
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedBackground = newValue!;
+                    });
+                  },
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
               child: DropdownButtonFormField<Bank>(
@@ -236,7 +291,7 @@ class EditCreditCardScreenState extends ConsumerState<EditCreditCardScreen> {
                           return AppLocalizations.of(context)!.cantBeNull;
                         } else if (value.length == 1) {
                           _expMonthController.text =
-                          "0${_expMonthController.text}";
+                              "0${_expMonthController.text}";
                         }
                         return null;
                       },
@@ -259,7 +314,7 @@ class EditCreditCardScreenState extends ConsumerState<EditCreditCardScreen> {
                           return AppLocalizations.of(context)!.cantBeNull;
                         } else if (value.length == 1) {
                           _expYearController.text =
-                          "0${_expYearController.text}";
+                              "0${_expYearController.text}";
                         }
                         return null;
                       },

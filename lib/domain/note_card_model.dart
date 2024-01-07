@@ -8,6 +8,7 @@ part 'note_card_model.g.dart';
 class NoteCard with _$NoteCard {
   factory NoteCard(
       {required String id,
+      required String bgId,
       required String title,
       required String note}) = _NoteCard;
 

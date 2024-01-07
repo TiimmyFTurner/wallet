@@ -33,12 +33,12 @@ class CreditCardWidget extends ConsumerWidget {
               opacity: const AlwaysStoppedAnimation(.55),
             ),
             Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
+              decoration:  BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   opacity: .25,
-                  image: AssetImage('assets/theme/cardbg10.png'),
+                  image: AssetImage('assets/theme/cardbg${creditCard.bgId}.png'),
                 ),
               ),
               child: Theme(

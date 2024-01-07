@@ -22,6 +22,8 @@ CreditCard _$CreditCardFromJson(Map<String, dynamic> json) {
 mixin _$CreditCard {
   String get id => throw _privateConstructorUsedError;
   set id(String value) => throw _privateConstructorUsedError;
+  String get bgId => throw _privateConstructorUsedError;
+  set bgId(String value) => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   set title(String value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -55,6 +57,7 @@ abstract class $CreditCardCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String bgId,
       String title,
       String name,
       String number,
@@ -82,6 +85,7 @@ class _$CreditCardCopyWithImpl<$Res, $Val extends CreditCard>
   @override
   $Res call({
     Object? id = null,
+    Object? bgId = null,
     Object? title = null,
     Object? name = null,
     Object? number = null,
@@ -96,6 +100,10 @@ class _$CreditCardCopyWithImpl<$Res, $Val extends CreditCard>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      bgId: null == bgId
+          ? _value.bgId
+          : bgId // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -155,6 +163,7 @@ abstract class _$$CreditCardImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
+      String bgId,
       String title,
       String name,
       String number,
@@ -181,6 +190,7 @@ class __$$CreditCardImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? bgId = null,
     Object? title = null,
     Object? name = null,
     Object? number = null,
@@ -195,6 +205,10 @@ class __$$CreditCardImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      bgId: null == bgId
+          ? _value.bgId
+          : bgId // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -241,6 +255,7 @@ class __$$CreditCardImplCopyWithImpl<$Res>
 class _$CreditCardImpl implements _CreditCard {
   _$CreditCardImpl(
       {required this.id,
+      required this.bgId,
       required this.title,
       required this.name,
       required this.number,
@@ -256,6 +271,8 @@ class _$CreditCardImpl implements _CreditCard {
 
   @override
   String id;
+  @override
+  String bgId;
   @override
   String title;
   @override
@@ -277,7 +294,7 @@ class _$CreditCardImpl implements _CreditCard {
 
   @override
   String toString() {
-    return 'CreditCard(id: $id, title: $title, name: $name, number: $number, cvv2: $cvv2, exp: $exp, shba: $shba, pass: $pass, note: $note, bank: $bank)';
+    return 'CreditCard(id: $id, bgId: $bgId, title: $title, name: $name, number: $number, cvv2: $cvv2, exp: $exp, shba: $shba, pass: $pass, note: $note, bank: $bank)';
   }
 
   @JsonKey(ignore: true)
@@ -297,6 +314,7 @@ class _$CreditCardImpl implements _CreditCard {
 abstract class _CreditCard implements CreditCard {
   factory _CreditCard(
       {required String id,
+      required String bgId,
       required String title,
       required String name,
       required String number,
@@ -313,6 +331,9 @@ abstract class _CreditCard implements CreditCard {
   @override
   String get id;
   set id(String value);
+  @override
+  String get bgId;
+  set bgId(String value);
   @override
   String get title;
   set title(String value);

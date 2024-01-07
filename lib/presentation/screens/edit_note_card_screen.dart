@@ -19,6 +19,7 @@ class EditNoteCardScreen extends ConsumerStatefulWidget {
 class EditNoteCardScreenState extends ConsumerState<EditNoteCardScreen> {
   final _titleController = TextEditingController();
   final _noteController = TextEditingController();
+  late String _selectedBackground;
 
   @override
   void initState() {
@@ -26,6 +27,7 @@ class EditNoteCardScreenState extends ConsumerState<EditNoteCardScreen> {
         .read(noteCardsProvider)
         .where((element) => element.id == widget.cardId)
         .first;
+    _selectedBackground = card.bgId;
     _titleController.text = card.title;
     _noteController.text = card.note;
 
@@ -40,6 +42,9 @@ class EditNoteCardScreenState extends ConsumerState<EditNoteCardScreen> {
   }
 
   final _formKey = GlobalKey<FormState>();
+  final _backgroundList = List<String>.generate(10, (i) {
+    return (i + 1).toString();
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +56,13 @@ class EditNoteCardScreenState extends ConsumerState<EditNoteCardScreen> {
                 if (_formKey.currentState!.validate()) {
                   NoteCard createdCard = NoteCard(
                     id: widget.cardId,
+                    bgId: _selectedBackground,
                     title: _titleController.text,
                     note: _noteController.text,
                   );
-                  ref.read(noteCardsProvider.notifier).editNoteCard(createdCard);
+                  ref
+                      .read(noteCardsProvider.notifier)
+                      .editNoteCard(createdCard);
                   context.pop();
                 }
               },
@@ -67,6 +75,59 @@ class EditNoteCardScreenState extends ConsumerState<EditNoteCardScreen> {
         key: _formKey,
         child: ListView(
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
+              child: IntrinsicWidth(
+                child: DropdownButtonFormField<String>(
+                  icon: const SizedBox(),
+                  iconSize: 75,
+                  decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: AppLocalizations.of(context)!.background),
+                  value: _selectedBackground,
+                  items: _backgroundList
+                      .map<DropdownMenuItem<String>>((String id) {
+                    return DropdownMenuItem<String>(
+                      value: id,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 75,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage("assets/theme/cardbg${id}.png"),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  selectedItemBuilder: (_) {
+                    return _backgroundList.map<Widget>((String item) {
+                      return Container(
+                        width: 300,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage("assets/theme/cardbg${item}.png"),
+                          ),
+                        ),
+                      );
+                    }).toList();
+                  },
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedBackground = newValue!;
+                    });
+                  },
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
               child: TextFormField(

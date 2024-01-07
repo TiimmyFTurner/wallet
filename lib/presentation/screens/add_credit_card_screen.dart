@@ -77,6 +77,7 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
                   }
                   CreditCard createdCard = CreditCard(
                     id: uuid.v1(),
+                    bgId: _selectedBackground,
                     title: _titleController.text,
                     name: _nameController.text,
                     number: _numberController.text,
@@ -88,7 +89,6 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
                     note: _noteController.text,
                     bank: _selectedBank,
                   );
-
                   ref
                       .read(creditCardsProvider.notifier)
                       .addCreditCard(createdCard);
@@ -108,10 +108,10 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
               child: IntrinsicWidth(
                 child: DropdownButtonFormField<String>(
-                  icon: SizedBox(),
+                  icon: const SizedBox(),
                   iconSize: 75,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       labelText: AppLocalizations.of(context)!.background),
                   value: _selectedBackground,
                   items: _backgroundList
@@ -123,7 +123,8 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
                         child: Container(
                           height: 75,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
                             image: DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage("assets/theme/cardbg${id}.png"),
@@ -138,7 +139,8 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
                       return Container(
                         width: 300,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: AssetImage("assets/theme/cardbg${item}.png"),

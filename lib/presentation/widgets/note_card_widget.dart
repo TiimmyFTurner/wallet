@@ -17,12 +17,12 @@ class NoteCardWidget extends ConsumerWidget {
       child: Card(
         shadowColor: Colors.transparent,
         child: Container(
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+          decoration:  BoxDecoration(
+            borderRadius:const BorderRadius.all(Radius.circular(10)),
             image: DecorationImage(
               fit: BoxFit.cover,
               opacity: .25,
-              image: AssetImage('assets/theme/cardbg10.png'),
+              image: AssetImage('assets/theme/cardbg${noteCard.bgId}.png'),
             ),
           ),
           child: Theme(
