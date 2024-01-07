@@ -128,7 +128,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(4))),
                   ),
-                  onPressed: () => {},
+                  onPressed: () {
+                    context.pop();
+                    context.go('/addImageCard');
+                  },
                   child: Text(
                     AppLocalizations.of(context)!.imageCard,
                     style: const TextStyle(fontSize: 20),
