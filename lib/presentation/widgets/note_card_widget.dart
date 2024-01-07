@@ -21,8 +21,8 @@ class NoteCardWidget extends ConsumerWidget {
             borderRadius: BorderRadius.all(Radius.circular(10)),
             image: DecorationImage(
               fit: BoxFit.cover,
-              opacity: .15,
-              image: AssetImage('assets/theme/cardbg.png'),
+              opacity: .25,
+              image: AssetImage('assets/theme/cardbg10.png'),
             ),
           ),
           child: Theme(

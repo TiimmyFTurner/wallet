@@ -37,6 +37,7 @@
   "addNoteCard": "اضافه کردن یادداشت",
   "deleteNoteCardQuestion": "حذف یادداشت؟",
   "deleteCreditCardQuestion": "حذف کارت؟",
-  "no": "خیر"
+  "no": "خیر",
+  "background": "پس زمینه"
 
 }
