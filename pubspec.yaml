@@ -50,7 +50,6 @@ dependencies:
   uuid: ^4.2.2
   dynamic_color: ^1.6.9
   image_picker: ^1.0.6
-  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
