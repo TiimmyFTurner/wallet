@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wallet/application/state_management/shared_preferences_provider.dart';
 import 'package:wallet/infrastructure/router.dart';
@@ -27,17 +28,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final String? font = Platform.localeName.substring(0,2) == "fa" ? 'Koodak' : null;
+    final ColorScheme defaultScheme = ColorScheme.fromSeed(seedColor: Colors.lightBlue);
     return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
       return MaterialApp.router(
         routerConfig: router,
         title: 'Flutter Demo',
         theme: ThemeData(
-          colorScheme: lightColorScheme ?? ColorScheme.fromSeed(seedColor: Colors.amberAccent),
+          colorScheme: lightColorScheme ?? defaultScheme,
           useMaterial3: true,
+          fontFamily: font
         ),
         darkTheme: ThemeData(
-          colorScheme: darkColorScheme ?? ColorScheme.fromSeed(seedColor: Colors.amberAccent),
+          colorScheme: darkColorScheme ?? defaultScheme,
           useMaterial3: true,
+          fontFamily: font
         ),
         themeMode: ThemeMode.system,
         supportedLocales: L10n.all,
