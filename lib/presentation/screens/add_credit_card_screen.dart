@@ -64,17 +64,19 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
                     setState(() {
                       _noteController.text = "-";
                     });
-                    if (_passController.text.isEmpty) {
-                      setState(() {
-                        _passController.text = "-";
-                      });
-                      if (_shbaController.text.isEmpty) {
-                        setState(() {
-                          _shbaController.text = "-";
-                        });
-                      }
-                    }
                   }
+
+                  if (_passController.text.isEmpty) {
+                    setState(() {
+                      _passController.text = "-";
+                    });
+                  }
+                  if (_shbaController.text.isEmpty) {
+                    setState(() {
+                      _shbaController.text = "-";
+                    });
+                  }
+
                   CreditCard createdCard = CreditCard(
                     id: uuid.v1(),
                     bgId: _selectedBackground,

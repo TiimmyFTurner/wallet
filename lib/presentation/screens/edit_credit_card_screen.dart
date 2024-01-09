@@ -85,17 +85,18 @@ class EditCreditCardScreenState extends ConsumerState<EditCreditCardScreen> {
                     setState(() {
                       _noteController.text = "-";
                     });
-                    if (_passController.text.isEmpty) {
-                      setState(() {
-                        _passController.text = "-";
-                      });
-                      if (_shbaController.text.isEmpty) {
-                        setState(() {
-                          _shbaController.text = "-";
-                        });
-                      }
-                    }
                   }
+                  if (_passController.text.isEmpty) {
+                    setState(() {
+                      _passController.text = "-";
+                    });
+                  }
+                  if (_shbaController.text.isEmpty) {
+                    setState(() {
+                      _shbaController.text = "-";
+                    });
+                  }
+
                   CreditCard createdCard = CreditCard(
                     id: widget.cardId,
                     bgId: _selectedBackground,
