@@ -43,5 +43,14 @@
   "gallery": "Gallery",
   "camera": "Camera",
   "deleteImage": "Delete Image",
-  "deleteImageCardQuestion": "Delete Image Card?"
+  "deleteImageCardQuestion": "Delete Image Card?",
+  "identifications": "Identifications",
+  "idCard": "ID Card",
+  "addIDCard": "Add ID Card",
+  "idNumber": "ID Number",
+  "birthDate": "Birth Date",
+  "fatherName" : "Father",
+  "serial": "Serial",
+  "cantBeLessThan10":" the length must be 10",
+  "deleteIDCardQuestion": "Delete ID Card?"
 }

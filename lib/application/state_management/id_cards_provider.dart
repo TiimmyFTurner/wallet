@@ -2,27 +2,27 @@ import 'dart:convert';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wallet/application/state_management/shared_preferences_provider.dart';
-import 'package:wallet/domain/image_card_model.dart';
+import 'package:wallet/domain/id_card_model.dart';
 
-part 'image_cards_provider.g.dart';
+part 'id_cards_provider.g.dart';
 
 @riverpod
-class ImageCards extends _$ImageCards {
+class IDCards extends _$IDCards {
   dynamic _prefs;
 
-  List<ImageCard> _fetchCards() {
+  List<IDCard> _fetchCards() {
     _prefs = ref.watch(sharedPreferencesProvider);
-    final storedString = _prefs.getString('image_cards_list');
+    final storedString = _prefs.getString('id_cards_list');
     if (storedString != null) {
       final individualJsons = storedString.split('|');
       final deserializedList =
           individualJsons.map((json) => jsonDecode(json)).toList();
-      List<ImageCard> imageCardList = [];
+      List<IDCard> idCardList = [];
       for (final item in deserializedList) {
-        ImageCard ic = ImageCard.fromJson(item);
-        imageCardList.add(ic);
+        IDCard cc = IDCard.fromJson(item);
+        idCardList.add(cc);
       }
-      return imageCardList;
+      return idCardList;
     }
     return [];
   }
@@ -31,34 +31,35 @@ class ImageCards extends _$ImageCards {
     if (state != []) {
       final jsonList = state.map((card) => jsonEncode(card.toJson()));
       final joinedString = jsonList.join('|');
-      _prefs.setString('image_cards_list', joinedString);
-    }else {
+      _prefs.setString('id_cards_list', joinedString);
+    }
+    else {
       _prefs.setString('credit_cards_list',null);
     }
   }
 
   @override
-  List<ImageCard> build() {
+  List<IDCard> build() {
     return _fetchCards();
   }
 
-  void addImageCard(ImageCard imageCard) {
-    state = [...state, imageCard];
+  void addIDCard(IDCard idCard) {
+    state = [...state, idCard];
     _saveSharedPreferences();
   }
 
-  void removeImageCard(String imageCardId) {
+  void removeIDCard(String idCardId) {
     state = [
       for (final card in state)
-        if (card.id != imageCardId) card,
+        if (card.id != idCardId) card,
     ];
     _saveSharedPreferences();
   }
 
-  void editImageCard(ImageCard imageCard) {
+  void editIDCard(IDCard idCard) {
     state = [
       for (final card in state)
-        if (card.id == imageCard.id) imageCard else card
+        if (card.id == idCard.id) idCard else card
     ];
     _saveSharedPreferences();
   }

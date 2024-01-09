@@ -5,12 +5,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet/application/state_management/credit_cards_provider.dart';
+import 'package:wallet/application/state_management/id_cards_provider.dart';
 import 'package:wallet/application/state_management/image_cards_provider.dart';
 import 'package:wallet/application/state_management/note_cards_provider.dart';
 import 'package:wallet/domain/credit_card_model.dart';
+import 'package:wallet/domain/id_card_model.dart';
 import 'package:wallet/domain/image_card_model.dart';
 import 'package:wallet/domain/note_card_model.dart';
 import 'package:wallet/presentation/widgets/credit_card_widget.dart';
+import 'package:wallet/presentation/widgets/id_card_widget.dart';
 import 'package:wallet/presentation/widgets/note_card_widget.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -22,12 +25,15 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   int currentPageIndex = 0;
+  bool idCardExist= false;
 
   @override
   Widget build(BuildContext context) {
     List<CreditCard> creditCards = ref.watch(creditCardsProvider);
     List<NoteCard> noteCards = ref.watch(noteCardsProvider);
     List<ImageCard> imageCards = ref.watch(imageCardsProvider);
+    List<IDCard> idCards = ref.watch(iDCardsProvider);
+    idCardExist = idCards.isEmpty ? false :true;
 
     return Scaffold(
         appBar: AppBar(title: Text(AppLocalizations.of(context)!.wallet)),
@@ -45,6 +51,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             NavigationDestination(
               icon: const Icon(Icons.credit_card),
               label: AppLocalizations.of(context)!.creditCard,
+            ),
+            NavigationDestination(
+              selectedIcon: const Icon(Icons.person),
+              icon: const Icon(Icons.perm_identity),
+              label: AppLocalizations.of(context)!.identifications,
             ),
             NavigationDestination(
               selectedIcon: const Icon(Icons.image),
@@ -65,6 +76,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               itemBuilder: (BuildContext context, int index) {
                 return CreditCardWidget(creditCards[index]);
               }),
+          ListView.builder(
+              padding: const EdgeInsets.only(bottom: 75),
+              itemCount: idCards.length,
+              itemBuilder: (BuildContext context, int index) {
+                return IDCardWidget(idCards[index]);
+              }),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: GridView.builder(
@@ -76,15 +93,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               itemCount: imageCards.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: (){
-                        context.go('/showImageCard/${imageCards[index].id}');
+                  onTap: () {
+                    context.go('/showImageCard/${imageCards[index].id}');
                   },
                   child: Hero(
                     tag: "img${imageCards[index].id}",
                     child: Container(
                       width: 75,
                       decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(10)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
                         image: DecorationImage(
                           image: FileImage(File(imageCards[index].path)),
                           fit: BoxFit.cover,
@@ -96,7 +114,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               },
             ),
           ),
-          // Center(),
           ListView.builder(
               padding: const EdgeInsets.only(bottom: 75),
               itemCount: noteCards.length,
@@ -149,7 +166,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 6),
+            idCardExist ? const SizedBox(height: 6) :
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 36,vertical: 6),
+              child: SizedBox(
+                height: 56,
+                child: FilledButton.tonal(
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4))),
+                  ),
+                  onPressed: () {
+                    context.pop();
+                    context.go('/addIDCard');
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.idCard,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 36),
               child: SizedBox(

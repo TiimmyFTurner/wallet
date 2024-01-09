@@ -32,6 +32,8 @@ class NoteCards extends _$NoteCards {
       final jsonList = state.map((card) => jsonEncode(card.toJson()));
       final joinedString = jsonList.join('|');
       _prefs.setString('note_cards_list', joinedString);
+    }else {
+      _prefs.setString('credit_cards_list',null);
     }
   }
 

@@ -43,6 +43,16 @@
   "gallery": "گالری",
   "camera": "دوربین",
   "deleteImage": "حذف تصویر",
-  "deleteImageCardQuestion": "حدف تصویر؟"
+  "deleteImageCardQuestion": "حذف تصویر؟",
+  "identifications": "مدارک",
+  "idCard": "کارت ملی",
+  "addIDCard": "اضافه کردن کارت ملی",
+  "idNumber": "کد ملی",
+  "birthDate": "تاریخ تولد",
+  "fatherName" : "نام پدر",
+  "serial": "سریال",
+  "cantBeLessThan10":"کد ملی باید 10 رقم باشد",
+  "deleteIDCardQuestion": "حدف کارت ملی؟"
 
 }
+
