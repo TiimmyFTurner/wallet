@@ -8,14 +8,14 @@ part of 'image_card_model.dart';
 
 _$ImageCardImpl _$$ImageCardImplFromJson(Map<String, dynamic> json) =>
     _$ImageCardImpl(
-      json['note'] as String,
       id: json['id'] as String,
       path: json['path'] as String,
+      note: json['note'] as String,
     );
 
 Map<String, dynamic> _$$ImageCardImplToJson(_$ImageCardImpl instance) =>
     <String, dynamic>{
-      'note': instance.note,
       'id': instance.id,
       'path': instance.path,
+      'note': instance.note,
     };

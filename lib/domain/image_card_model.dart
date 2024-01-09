@@ -6,7 +6,7 @@ part 'image_card_model.g.dart';
 
 @unfreezed
 class ImageCard with _$ImageCard {
-  factory ImageCard(String note, {required String id, required String path}) =
+  factory ImageCard({required String id, required String path, required String note}) =
       _ImageCard;
 
   factory ImageCard.fromJson(Map<String, dynamic> json) =>

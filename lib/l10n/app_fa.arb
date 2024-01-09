@@ -38,6 +38,11 @@
   "deleteNoteCardQuestion": "حذف یادداشت؟",
   "deleteCreditCardQuestion": "حذف کارت؟",
   "no": "خیر",
-  "background": "پس زمینه"
+  "background": "پس زمینه",
+  "addImageCard": "اضافه کردن تصویر",
+  "gallery": "گالری",
+  "camera": "دوربین",
+  "deleteImage": "حذف تصویر"
+
 
 }

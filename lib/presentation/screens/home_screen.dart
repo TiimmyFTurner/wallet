@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -60,12 +62,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               itemBuilder: (BuildContext context, int index) {
                 return CreditCardWidget(creditCards[index]);
               }),
-          ListView.builder(
-              padding: const EdgeInsets.only(bottom: 75),
-              itemCount: creditCards.length,
-              itemBuilder: (BuildContext context, int index) {
-                return CreditCardWidget(creditCards[index]);
-              }),
+          // GridView.builder(
+          //   physics: NeverScrollableScrollPhysics(),
+          //   shrinkWrap: true,
+          //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          //     crossAxisCount: 5,
+          //     crossAxisSpacing: 5.0,
+          //     mainAxisSpacing: 5.0,
+          //   ),
+          //   itemCount: 10,
+          //   itemBuilder: (context, index) {
+          //     return Container(
+          //       color: Colors.blue,
+          //       child: Text("index: $index"),
+          //     );
+          //   },
+          // )
+          Center(),
           ListView.builder(
               padding: const EdgeInsets.only(bottom: 75),
               itemCount: noteCards.length,

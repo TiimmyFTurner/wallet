@@ -38,5 +38,9 @@
   "deleteNoteCardQuestion": "Delete Note Card?",
   "deleteCreditCardQuestion": "Delete Credit Card?",
   "no": "No",
-  "background": "Background"
+  "background": "Background",
+  "addImageCard": "Add Image Card",
+  "gallery": "Gallery",
+  "camera": "Camera",
+  "deleteImage": "Delete Image"
 }
