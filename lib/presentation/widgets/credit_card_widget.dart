@@ -37,7 +37,7 @@ class CreditCardWidget extends ConsumerWidget {
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  opacity: .25,
+                  opacity: .35,
                   image: AssetImage('assets/theme/cardbg${creditCard.bgId}.png'),
                 ),
               ),
