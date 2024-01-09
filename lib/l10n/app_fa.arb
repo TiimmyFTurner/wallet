@@ -42,7 +42,7 @@
   "addImageCard": "اضافه کردن تصویر",
   "gallery": "گالری",
   "camera": "دوربین",
-  "deleteImage": "حذف تصویر"
-
+  "deleteImage": "حذف تصویر",
+  "deleteImageCardQuestion": "حدف تصویر؟"
 
 }

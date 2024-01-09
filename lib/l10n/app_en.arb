@@ -42,5 +42,6 @@
   "addImageCard": "Add Image Card",
   "gallery": "Gallery",
   "camera": "Camera",
-  "deleteImage": "Delete Image"
+  "deleteImage": "Delete Image",
+  "deleteImageCardQuestion": "Delete Image Card?"
 }

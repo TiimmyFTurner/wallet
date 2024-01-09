@@ -5,8 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet/application/state_management/credit_cards_provider.dart';
+import 'package:wallet/application/state_management/image_cards_provider.dart';
 import 'package:wallet/application/state_management/note_cards_provider.dart';
 import 'package:wallet/domain/credit_card_model.dart';
+import 'package:wallet/domain/image_card_model.dart';
 import 'package:wallet/domain/note_card_model.dart';
 import 'package:wallet/presentation/widgets/credit_card_widget.dart';
 import 'package:wallet/presentation/widgets/note_card_widget.dart';
@@ -25,6 +27,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     List<CreditCard> creditCards = ref.watch(creditCardsProvider);
     List<NoteCard> noteCards = ref.watch(noteCardsProvider);
+    List<ImageCard> imageCards = ref.watch(imageCardsProvider);
 
     return Scaffold(
         appBar: AppBar(title: Text(AppLocalizations.of(context)!.wallet)),
@@ -62,23 +65,38 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               itemBuilder: (BuildContext context, int index) {
                 return CreditCardWidget(creditCards[index]);
               }),
-          // GridView.builder(
-          //   physics: NeverScrollableScrollPhysics(),
-          //   shrinkWrap: true,
-          //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          //     crossAxisCount: 5,
-          //     crossAxisSpacing: 5.0,
-          //     mainAxisSpacing: 5.0,
-          //   ),
-          //   itemCount: 10,
-          //   itemBuilder: (context, index) {
-          //     return Container(
-          //       color: Colors.blue,
-          //       child: Text("index: $index"),
-          //     );
-          //   },
-          // )
-          Center(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+              ),
+              itemCount: imageCards.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: (){
+                        context.go('/showImageCard/${imageCards[index].id}');
+                  },
+                  child: Hero(
+                    tag: "img${imageCards[index].id}",
+                    child: Container(
+                      width: 75,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(10)),
+                        image: DecorationImage(
+                          image: FileImage(File(imageCards[index].path)),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          // Center(),
           ListView.builder(
               padding: const EdgeInsets.only(bottom: 75),
               itemCount: noteCards.length,
