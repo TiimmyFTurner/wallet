@@ -12,17 +12,17 @@ class ImageCards extends _$ImageCards {
 
   List<ImageCard> _fetchCards() {
     _prefs = ref.watch(sharedPreferencesProvider);
-    final storedString = _prefs.getString('note_cards_list');
+    final storedString = _prefs.getString('image_cards_list');
     if (storedString != null) {
       final individualJsons = storedString.split('|');
       final deserializedList =
           individualJsons.map((json) => jsonDecode(json)).toList();
-      List<ImageCard> noteCardList = [];
+      List<ImageCard> imageCardList = [];
       for (final item in deserializedList) {
-        ImageCard nc = ImageCard.fromJson(item);
-        noteCardList.add(nc);
+        ImageCard ic = ImageCard.fromJson(item);
+        imageCardList.add(ic);
       }
-      return noteCardList;
+      return imageCardList;
     }
     return [];
   }
@@ -31,7 +31,7 @@ class ImageCards extends _$ImageCards {
     if (state != []) {
       final jsonList = state.map((card) => jsonEncode(card.toJson()));
       final joinedString = jsonList.join('|');
-      _prefs.setString('note_cards_list', joinedString);
+      _prefs.setString('image_cards_list', joinedString);
     }
   }
 
@@ -40,23 +40,23 @@ class ImageCards extends _$ImageCards {
     return _fetchCards();
   }
 
-  void addImageCard(ImageCard noteCard) {
-    state = [...state, noteCard];
+  void addImageCard(ImageCard imageCard) {
+    state = [...state, imageCard];
     _saveSharedPreferences();
   }
 
-  void removeImageCard(String noteCardId) {
+  void removeImageCard(String imageCardId) {
     state = [
       for (final card in state)
-        if (card.id != noteCardId) card,
+        if (card.id != imageCardId) card,
     ];
     _saveSharedPreferences();
   }
 
-  void editImageCard(ImageCard noteCard) {
+  void editImageCard(ImageCard imageCard) {
     state = [
       for (final card in state)
-        if (card.id == noteCard.id) noteCard else card
+        if (card.id == imageCard.id) imageCard else card
     ];
     _saveSharedPreferences();
   }
