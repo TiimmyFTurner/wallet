@@ -39,25 +39,23 @@ class AddImageCardScreenState extends ConsumerState<AddImageCardScreen> {
         actions: [
           FilledButton(
               onPressed: () async {
-                if (_formKey.currentState!.validate()) {
+                if (_image != null) {
                   if (_noteController.text.isEmpty) {
                     setState(() {
                       _noteController.text = "-";
                     });
                   }
-                  if (_image != null) {
-                    context.pop();
-                    final cardId = uuid.v1();
-                    final directory = await getApplicationDocumentsDirectory();
-                    final path = "${directory.path}/$cardId.jpg";
-                    final imageFile = File(_image.path);
-                    await imageFile.copy(path);
-                    ImageCard createdCard = ImageCard(
-                        id: cardId, note: _noteController.text, path: path);
-                    ref
-                        .read(imageCardsProvider.notifier)
-                        .addImageCard(createdCard);
-                  }
+                  context.pop();
+                  final cardId = uuid.v1();
+                  final directory = await getApplicationDocumentsDirectory();
+                  final path = "${directory.path}/$cardId.jpg";
+                  final imageFile = File(_image.path);
+                  await imageFile.copy(path);
+                  ImageCard createdCard = ImageCard(
+                      id: cardId, note: _noteController.text, path: path);
+                  ref
+                      .read(imageCardsProvider.notifier)
+                      .addImageCard(createdCard);
                 }
               },
               child: Text(AppLocalizations.of(context)!.save)),
@@ -111,7 +109,9 @@ class AddImageCardScreenState extends ConsumerState<AddImageCardScreen> {
                                     _image = null;
                                   });
                                 },
-                                child: Text(AppLocalizations.of(context)!.deleteImage,))
+                                child: Text(
+                                  AppLocalizations.of(context)!.deleteImage,
+                                ))
                           ],
                         )),
             ),
