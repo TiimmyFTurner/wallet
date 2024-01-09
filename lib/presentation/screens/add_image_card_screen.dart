@@ -79,10 +79,10 @@ class AddImageCardScreenState extends ConsumerState<AddImageCardScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.image_outlined),
-                              SizedBox(width: 8),
+                              const Icon(Icons.image_outlined),
+                              const SizedBox(width: 8),
                               Text(AppLocalizations.of(context)!.addImageCard,
-                                  style: TextStyle(fontSize: 18)),
+                                  style: const TextStyle(fontSize: 18)),
                             ],
                           ))
                       : Row(
