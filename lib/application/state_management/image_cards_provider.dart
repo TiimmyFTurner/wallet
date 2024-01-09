@@ -32,8 +32,8 @@ class ImageCards extends _$ImageCards {
       final jsonList = state.map((card) => jsonEncode(card.toJson()));
       final joinedString = jsonList.join('|');
       _prefs.setString('image_cards_list', joinedString);
-    }else {
-      _prefs.setString('credit_cards_list',null);
+    } else {
+      _prefs.remove('image_cards_list');
     }
   }
 

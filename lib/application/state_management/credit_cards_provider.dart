@@ -33,7 +33,7 @@ class CreditCards extends _$CreditCards {
       final joinedString = jsonList.join('|');
       _prefs.setString('credit_cards_list', joinedString);
     } else {
-      _prefs.setString('credit_cards_list',null);
+      _prefs.remove('credit_cards_list');
     }
   }
 

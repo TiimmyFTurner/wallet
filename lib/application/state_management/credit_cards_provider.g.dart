@@ -6,7 +6,7 @@ part of 'credit_cards_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$creditCardsHash() => r'7078415933ee8ba4805c3e32815db8c8ec438604';
+String _$creditCardsHash() => r'b677f38a2e31389faac48a49a3ff03fa19ad560c';
 
 /// See also [CreditCards].
 @ProviderFor(CreditCards)

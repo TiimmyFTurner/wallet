@@ -32,9 +32,8 @@ class IDCards extends _$IDCards {
       final jsonList = state.map((card) => jsonEncode(card.toJson()));
       final joinedString = jsonList.join('|');
       _prefs.setString('id_cards_list', joinedString);
-    }
-    else {
-      _prefs.setString('credit_cards_list',null);
+    } else {
+      _prefs.remove('id_cards_list');
     }
   }
 
