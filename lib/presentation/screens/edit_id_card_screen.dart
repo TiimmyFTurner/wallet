@@ -154,6 +154,7 @@ class EditIDCardScreenState extends ConsumerState<EditIDCardScreen> {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
               child: TextFormField(
                 controller: _nameController,
+                textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   labelText: "${AppLocalizations.of(context)!.name}*",
                   border: const OutlineInputBorder(),
@@ -170,6 +171,8 @@ class EditIDCardScreenState extends ConsumerState<EditIDCardScreen> {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
               child: TextFormField(
                 controller: _numberController,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
                 inputFormatters: [LengthLimitingTextInputFormatter(10)],
                 decoration: InputDecoration(
                   labelText: "${AppLocalizations.of(context)!.idNumber}*",
@@ -189,6 +192,7 @@ class EditIDCardScreenState extends ConsumerState<EditIDCardScreen> {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
               child: TextFormField(
                 controller: _fatherController,
+                textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   labelText: "${AppLocalizations.of(context)!.fatherName}*",
                   border: const OutlineInputBorder(),
@@ -209,6 +213,8 @@ class EditIDCardScreenState extends ConsumerState<EditIDCardScreen> {
                     flex: 1,
                     child: TextFormField(
                       controller: _birthdayController,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.datetime,
                       decoration: InputDecoration(
                         labelText:
                             "${AppLocalizations.of(context)!.birthDate}*",
@@ -227,6 +233,8 @@ class EditIDCardScreenState extends ConsumerState<EditIDCardScreen> {
                     flex: 1,
                     child: TextFormField(
                       controller: _expController,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.datetime,
                       decoration: InputDecoration(
                         labelText: "${AppLocalizations.of(context)!.expDate}*",
                         border: const OutlineInputBorder(),

@@ -185,6 +185,7 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
               child: TextFormField(
                 controller: _titleController,
+                textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   labelText: "${AppLocalizations.of(context)!.title}*",
                   border: const OutlineInputBorder(),
@@ -201,6 +202,7 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
               child: TextFormField(
                 controller: _nameController,
+                textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   labelText: "${AppLocalizations.of(context)!.name}*",
                   border: const OutlineInputBorder(),
@@ -219,6 +221,8 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
               child: TextFormField(
                 controller: _numberController,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
                 inputFormatters: [LengthLimitingTextInputFormatter(16)],
                 decoration: InputDecoration(
                   labelText: "${AppLocalizations.of(context)!.cardNumber}*",
@@ -242,6 +246,8 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
                     flex: 2,
                     child: TextFormField(
                       controller: _cvv2Controller,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
                       inputFormatters: [LengthLimitingTextInputFormatter(5)],
                       decoration: const InputDecoration(
                         labelText: "CVV2*",
@@ -262,6 +268,8 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
                     flex: 1,
                     child: TextFormField(
                       controller: _expMonthController,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
                       inputFormatters: [LengthLimitingTextInputFormatter(2)],
                       decoration: InputDecoration(
                         labelText: "${AppLocalizations.of(context)!.month}*",
@@ -285,6 +293,8 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
                     flex: 1,
                     child: TextFormField(
                       controller: _expYearController,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
                       inputFormatters: [LengthLimitingTextInputFormatter(2)],
                       decoration: InputDecoration(
                         labelText: "${AppLocalizations.of(context)!.year}*",
@@ -308,6 +318,7 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
               child: TextFormField(
                 controller: _shbaController,
+                textInputAction: TextInputAction.next,
                 inputFormatters: [LengthLimitingTextInputFormatter(26)],
                 decoration: InputDecoration(
                   labelText: AppLocalizations.of(context)!.shba,
@@ -318,8 +329,9 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
               child: TextFormField(
-                keyboardType: TextInputType.text,
                 controller: _passController,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
                 obscureText: !_passwordVisible,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),

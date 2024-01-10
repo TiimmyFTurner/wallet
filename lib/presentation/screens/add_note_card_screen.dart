@@ -123,6 +123,7 @@ class AddNoteCardScreenState extends ConsumerState<AddNoteCardScreen> {
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 36),
               child: TextFormField(
                 controller: _titleController,
+                textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   labelText: "${AppLocalizations.of(context)!.title}*",
                   border: const OutlineInputBorder(),
