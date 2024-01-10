@@ -54,5 +54,6 @@
   "cantBeLessThan10":" the length must be 10",
   "deleteIDCardQuestion": "Delete ID Card?",
   "editIDCard": "Edit ID Card",
-  "emptyPocketMessage": "This Pocket Is Empty"
+  "emptyPocketMessage": "This Pocket Is Empty",
+  "emptySearchResultMessage": "Nothing Found!"
 }

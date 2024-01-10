@@ -49,11 +49,12 @@
   "addIDCard": "اضافه کردن کارت ملی",
   "idNumber": "کد ملی",
   "birthDate": "تاریخ تولد",
-  "fatherName" : "نام پدر",
+  "fatherName": "نام پدر",
   "serial": "سریال",
-  "cantBeLessThan10":"کد ملی باید 10 رقم باشد",
+  "cantBeLessThan10": "کد ملی باید 10 رقم باشد",
   "deleteIDCardQuestion": "حدف کارت ملی؟",
   "editIDCard": "ویرایش کارت ملی",
-  "emptyPocketMessage": "توی این جیب هنوز چیزی نزاشتی!"
+  "emptyPocketMessage": "توی این جیب هنوز چیزی نزاشتی!",
+  "emptySearchResultMessage": "چیزی پیدا نکردم!"
 }
 

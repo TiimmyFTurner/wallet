@@ -42,7 +42,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               onPressed: () {
                 context.push('/searchScreen');
               },
-              icon: Icon(Icons.search))
+              icon: const Hero(tag: "searchIcon", child: Icon(Icons.search)))
         ]),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
