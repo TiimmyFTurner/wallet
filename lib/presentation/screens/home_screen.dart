@@ -25,7 +25,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   int currentPageIndex = 0;
-  bool idCardExist= false;
+  bool idCardExist = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     List<NoteCard> noteCards = ref.watch(noteCardsProvider);
     List<ImageCard> imageCards = ref.watch(imageCardsProvider);
     List<IDCard> idCards = ref.watch(iDCardsProvider);
-    idCardExist = idCards.isEmpty ? false :true;
+    idCardExist = idCards.isEmpty ? false : true;
 
     return Scaffold(
         appBar: AppBar(title: Text(AppLocalizations.of(context)!.wallet)),
@@ -70,57 +70,83 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ],
         ),
         body: <Widget>[
-          ListView.builder(
-              padding: const EdgeInsets.only(bottom: 75),
-              itemCount: creditCards.length,
-              itemBuilder: (BuildContext context, int index) {
-                return CreditCardWidget(creditCards[index]);
-              }),
-          ListView.builder(
-              padding: const EdgeInsets.only(bottom: 75),
-              itemCount: idCards.length,
-              itemBuilder: (BuildContext context, int index) {
-                return IDCardWidget(idCards[index]);
-              }),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              itemCount: imageCards.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    context.go('/showImageCard/${imageCards[index].id}');
-                  },
-                  child: Hero(
-                    tag: "img${imageCards[index].id}",
-                    child: Container(
-                      width: 75,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                        image: DecorationImage(
-                          image: FileImage(File(imageCards[index].path)),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+          creditCards.isEmpty
+              ? emptyStateWidget()
+              : ListView.builder(
+                  padding: const EdgeInsets.only(bottom: 75),
+                  itemCount: creditCards.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return CreditCardWidget(creditCards[index]);
+                  }),
+          idCards.isEmpty
+              ? emptyStateWidget()
+              : ListView.builder(
+                  padding: const EdgeInsets.only(bottom: 75),
+                  itemCount: idCards.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return IDCardWidget(idCards[index]);
+                  }),
+          imageCards.isEmpty
+              ? emptyStateWidget()
+              : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
                     ),
+                    itemCount: imageCards.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          context.go('/showImageCard/${imageCards[index].id}');
+                        },
+                        child: Hero(
+                          tag: "img${imageCards[index].id}",
+                          child: Container(
+                            width: 75,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
+                              image: DecorationImage(
+                                image: FileImage(File(imageCards[index].path)),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
+                ),
+          noteCards.isEmpty
+              ? emptyStateWidget()
+              : ListView.builder(
+                  padding: const EdgeInsets.only(bottom: 75),
+                  itemCount: noteCards.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return NoteCardWidget(noteCards[index]);
+                  }),
+        ][currentPageIndex]);
+  }
+
+  emptyStateWidget() {
+    return Center(
+      child: Column(
+        children: [
+          Image.asset('assets/theme/empty.png'),
+          Opacity(
+            opacity: .75,
+            child: Text(
+              AppLocalizations.of(context)!.emptyPocketMessage,
+              style: const TextStyle(fontSize: 24),
             ),
           ),
-          ListView.builder(
-              padding: const EdgeInsets.only(bottom: 75),
-              itemCount: noteCards.length,
-              itemBuilder: (BuildContext context, int index) {
-                return NoteCardWidget(noteCards[index]);
-              }),
-        ][currentPageIndex]);
+        ],
+      ),
+    );
   }
 
   addItemBottomSheet(context) {
@@ -166,27 +192,30 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
               ),
             ),
-            idCardExist ? const SizedBox(height: 6) :
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 36,vertical: 6),
-              child: SizedBox(
-                height: 56,
-                child: FilledButton.tonal(
-                  style: ElevatedButton.styleFrom(
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4))),
+            idCardExist
+                ? const SizedBox(height: 6)
+                : Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 36, vertical: 6),
+                    child: SizedBox(
+                      height: 56,
+                      child: FilledButton.tonal(
+                        style: ElevatedButton.styleFrom(
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4))),
+                        ),
+                        onPressed: () {
+                          context.pop();
+                          context.go('/addIDCard');
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.idCard,
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
                   ),
-                  onPressed: () {
-                    context.pop();
-                    context.go('/addIDCard');
-                  },
-                  child: Text(
-                    AppLocalizations.of(context)!.idCard,
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 36),
               child: SizedBox(

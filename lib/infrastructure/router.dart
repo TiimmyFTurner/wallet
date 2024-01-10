@@ -4,6 +4,7 @@ import 'package:wallet/presentation/screens/add_id_card_screen.dart';
 import 'package:wallet/presentation/screens/add_image_card_screen.dart';
 import 'package:wallet/presentation/screens/add_note_card_screen.dart';
 import 'package:wallet/presentation/screens/edit_credit_card_screen.dart';
+import 'package:wallet/presentation/screens/edit_id_card_screen.dart';
 import 'package:wallet/presentation/screens/edit_image_card_screen.dart';
 import 'package:wallet/presentation/screens/edit_note_card_screen.dart';
 import 'package:wallet/presentation/screens/home_screen.dart';
@@ -49,6 +50,11 @@ final GoRouter router = GoRouter(routes: <RouteBase>[
       GoRoute(
         path: 'addIDCard',
         builder: (context, state) => const AddIDCardScreen(),
+      ),
+      GoRoute(
+        path: 'editIDCard/:idCardId',
+        builder: (context, state) =>
+            EditIDCardScreen(state.pathParameters['idCardId']!),
       ),
     ],
   )

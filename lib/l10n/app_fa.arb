@@ -52,7 +52,8 @@
   "fatherName" : "نام پدر",
   "serial": "سریال",
   "cantBeLessThan10":"کد ملی باید 10 رقم باشد",
-  "deleteIDCardQuestion": "حدف کارت ملی؟"
-
+  "deleteIDCardQuestion": "حدف کارت ملی؟",
+  "editIDCard": "ویرایش کارت ملی",
+  "emptyPocketMessage": "توی این جیب هنوز چیزی نزاشتی!"
 }
 
