@@ -56,7 +56,7 @@ class ShowImageCardState extends ConsumerState<ShowImageCardScreen> {
                   children: [
                     IconButton(
                         onPressed: () {
-                          context.go('/editImageCard/${card.id}');
+                          context.push('/editImageCard/${card.id}');
                         },
                         icon: const Icon(Icons.edit)),
                     IconButton(
