@@ -55,7 +55,7 @@ class NoteCardWidget extends ConsumerWidget {
                     ),
                     IconButton(
                         onPressed: () {
-                          context.go('/editNoteCard/${noteCard.id}');
+                          context.push('/editNoteCard/${noteCard.id}');
                         },
                         icon: const Icon(Icons.edit)),
                     IconButton(

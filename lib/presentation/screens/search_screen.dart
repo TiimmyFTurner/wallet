@@ -173,7 +173,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                         itemBuilder: (context, index) {
                                           return GestureDetector(
                                             onTap: () {
-                                              context.go(
+                                              context.push(
                                                   '/showImageCard/${searchedImageCards[index].id}');
                                             },
                                             child: Hero(

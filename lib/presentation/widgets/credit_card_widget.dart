@@ -398,7 +398,7 @@ class CreditCardWidget extends ConsumerWidget {
                   ),
                   onPressed: () {
                     context.pop();
-                    context.go('/editCreditCard/${creditCard.id}');
+                    context.push('/editCreditCard/${creditCard.id}');
                   },
                   child: Text(
                     AppLocalizations.of(context)!.edit,

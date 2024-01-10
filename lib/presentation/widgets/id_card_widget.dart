@@ -54,7 +54,7 @@ class IDCardWidget extends ConsumerWidget {
                   ),
                   IconButton(
                       onPressed: () {
-                        context.go('/editIDCard/${idCard.id}');
+                        context.push('/editIDCard/${idCard.id}');
                       },
                       icon: const Icon(Icons.edit)),
                   IconButton(

@@ -108,7 +108,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          context.go('/showImageCard/${imageCards[index].id}');
+                          context.push('/showImageCard/${imageCards[index].id}');
                         },
                         child: Hero(
                           tag: "img${imageCards[index].id}",
@@ -190,7 +190,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   onPressed: () {
                     context.pop();
-                    context.go('/addCreditCard');
+                    context.push('/addCreditCard');
                   },
                   child: Text(
                     AppLocalizations.of(context)!.creditCard,
@@ -214,7 +214,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         ),
                         onPressed: () {
                           context.pop();
-                          context.go('/addIDCard');
+                          context.push('/addIDCard');
                         },
                         child: Text(
                           AppLocalizations.of(context)!.idCard,
@@ -234,7 +234,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   onPressed: () {
                     context.pop();
-                    context.go('/addImageCard');
+                    context.push('/addImageCard');
                   },
                   child: Text(
                     AppLocalizations.of(context)!.imageCard,
@@ -257,7 +257,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   onPressed: () {
                     context.pop();
-                    context.go('/addNoteCard');
+                    context.push('/addNoteCard');
                   },
                   child: Text(
                     AppLocalizations.of(context)!.noteCard,
