@@ -28,7 +28,7 @@ class NoteCards extends _$NoteCards {
   }
 
   void _saveSharedPreferences() {
-    if (state != []) {
+    if (state.isNotEmpty) {
       final jsonList = state.map((card) => jsonEncode(card.toJson()));
       final joinedString = jsonList.join('|');
       _prefs.setString('note_cards_list', joinedString);

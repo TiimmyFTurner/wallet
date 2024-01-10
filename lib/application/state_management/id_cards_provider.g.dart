@@ -6,7 +6,7 @@ part of 'id_cards_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$iDCardsHash() => r'b766d6dc21257dd38f996aaeccd909c8d06f6770';
+String _$iDCardsHash() => r'c871acc4c889ccf2860576faf08d5b21028337cf';
 
 /// See also [IDCards].
 @ProviderFor(IDCards)

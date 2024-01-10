@@ -28,7 +28,7 @@ class CreditCards extends _$CreditCards {
   }
 
   void _saveSharedPreferences() {
-    if (state != []) {
+    if (state.isNotEmpty) {
       final jsonList = state.map((card) => jsonEncode(card.toJson()));
       final joinedString = jsonList.join('|');
       _prefs.setString('credit_cards_list', joinedString);
