@@ -114,6 +114,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                         ),
                                       ),
                                       ListView.builder(
+                                          physics: const NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
                                           itemCount: searchedCreditCards.length,
                                           itemBuilder: (BuildContext context,
@@ -138,6 +139,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                         ),
                                       ),
                                       ListView.builder(
+                                          physics: const NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
                                           itemCount: searchedNoteCards.length,
                                           itemBuilder: (BuildContext context,
@@ -162,6 +164,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                         ),
                                       ),
                                       GridView.builder(
+                                        physics: const NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
                                         gridDelegate:
                                             const SliverGridDelegateWithFixedCrossAxisCount(
