@@ -73,10 +73,10 @@ class _CreditCardWidgetState extends ConsumerState<CreditCardWidget> {
                         ),
                       ),
                       IconButton(
-                          onPressed: () => copyBottomSheet(context),
+                          onPressed: () => editBottomSheet(context, ref),
                           icon: const Icon(Icons.edit)),
                       IconButton(
-                          onPressed: () => editBottomSheet(context, ref),
+                          onPressed: () => copyBottomSheet(context),
                           icon: const Icon(Icons.share)),
                     ],
                   ),
