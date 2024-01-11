@@ -42,13 +42,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           actions: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: IconButton(
-                  onPressed: () {
-                    context.push('/searchScreen');
-                  },
-                  icon:
-                      const Hero(tag: "searchIcon", child: Icon(Icons.search))),
-            )
+              child: Hero(
+                tag: "search",
+                child: IconButton(
+                    onPressed: () {
+                      context.push('/searchScreen');
+                    },
+                    icon:
+                       const Icon(Icons.search)),
+              )),
+
           ],
         ),
         floatingActionButton: FloatingActionButton(

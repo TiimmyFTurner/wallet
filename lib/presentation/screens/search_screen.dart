@@ -51,40 +51,43 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: SearchBar(
-                controller: controller,
-                padding: const MaterialStatePropertyAll<EdgeInsets>(
-                    EdgeInsets.symmetric(horizontal: 16.0)),
-                onTap: () {},
-                onChanged: (_) {
-                  setState(() {
-                    if (controller.text.isNotEmpty) {
-                      searchedCreditCards = creditCards
-                          .where((element) =>
-                              element.name.contains(controller.text) ||
-                              element.title.contains(controller.text))
-                          .toList();
-                      searchedNoteCards = noteCards
-                          .where((element) =>
-                              element.title.contains(controller.text) ||
-                              element.note.contains(controller.text))
-                          .toList();
-                      searchedImageCards = imageCards
-                          .where((element) =>
-                              element.note.contains(controller.text))
-                          .toList();
-                    } else {
-                      searchedCreditCards = creditCards;
-                      searchedNoteCards = noteCards;
-                      searchedImageCards = imageCards;
-                    }
-                    nothingFound = searchedCreditCards.isEmpty &&
-                        searchedNoteCards.isEmpty &&
-                        searchedImageCards.isEmpty;
-                  });
-                },
-                leading:
-                    const Hero(tag: "searchIcon", child: Icon(Icons.search)),
+              child: Hero(
+                tag: 'search',
+                child: SearchBar(
+                  controller: controller,
+                  padding: const MaterialStatePropertyAll<EdgeInsets>(
+                      EdgeInsets.symmetric(horizontal: 16.0)),
+                  onTap: () {},
+                  onChanged: (_) {
+                    setState(() {
+                      if (controller.text.isNotEmpty) {
+                        searchedCreditCards = creditCards
+                            .where((element) =>
+                                element.name.contains(controller.text) ||
+                                element.title.contains(controller.text))
+                            .toList();
+                        searchedNoteCards = noteCards
+                            .where((element) =>
+                                element.title.contains(controller.text) ||
+                                element.note.contains(controller.text))
+                            .toList();
+                        searchedImageCards = imageCards
+                            .where((element) =>
+                                element.note.contains(controller.text))
+                            .toList();
+                      } else {
+                        searchedCreditCards = creditCards;
+                        searchedNoteCards = noteCards;
+                        searchedImageCards = imageCards;
+                      }
+                      nothingFound = searchedCreditCards.isEmpty &&
+                          searchedNoteCards.isEmpty &&
+                          searchedImageCards.isEmpty;
+                    });
+                  },
+                  leading:
+                      const Icon(Icons.search),
+                ),
               ),
             ),
             nothingFound
