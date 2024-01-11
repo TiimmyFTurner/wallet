@@ -36,14 +36,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     idCardExist = idCards.isEmpty ? false : true;
 
     return Scaffold(
-        appBar:
-            AppBar(title: Text(AppLocalizations.of(context)!.wallet), actions: [
-          IconButton(
-              onPressed: () {
-                context.push('/searchScreen');
-              },
-              icon: const Hero(tag: "searchIcon", child: Icon(Icons.search)))
-        ]),
+        appBar: AppBar(
+          title: Text(AppLocalizations.of(context)!.wallet),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: IconButton(
+                  onPressed: () {
+                    context.push('/searchScreen');
+                  },
+                  icon:
+                      const Hero(tag: "searchIcon", child: Icon(Icons.search))),
+            )
+          ],
+        ),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () => {addItemBottomSheet(context)},
