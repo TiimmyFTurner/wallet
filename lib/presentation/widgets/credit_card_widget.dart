@@ -333,31 +333,6 @@ class _CreditCardWidgetState extends ConsumerState<CreditCardWidget> {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    AppLocalizations.of(context)!.note,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Card(
-                    elevation: 0,
-                    color: Theme.of(context).colorScheme.surfaceVariant,
-                    child: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: SizedBox(
-                        height: 150,
-                        child: SingleChildScrollView(
-                          child: Text(
-                            widget.creditCard.note,
-                            textAlign: TextAlign.justify,
-                            style: const TextStyle(fontSize: 20),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
                     AppLocalizations.of(context)!.password,
                     style: const TextStyle(
                       fontSize: 20,
@@ -393,7 +368,32 @@ class _CreditCardWidgetState extends ConsumerState<CreditCardWidget> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 16),
+                  Text(
+                    AppLocalizations.of(context)!.note,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Card(
+                    elevation: 0,
+                    color: Theme.of(context).colorScheme.surfaceVariant,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: SizedBox(
+                        // height: 150,
+                        child: SingleChildScrollView(
+                          child: Text(
+                            widget.creditCard.note,
+                            textAlign: TextAlign.justify,
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
                 ],
               ),
             ),
