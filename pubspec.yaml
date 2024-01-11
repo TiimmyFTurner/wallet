@@ -51,6 +51,17 @@ dependencies:
   dynamic_color: ^1.6.9
   image_picker: ^1.0.6
   path_provider: ^2.1.2
+  flutter_launcher_icons: ^0.13.1
+
+
+flutter_launcher_icons:
+  #  image_path: "assets/images/icon-128x128.png"
+  image_path_android: "assets/theme/icon.png"
+  android: true # can specify file name here e.g. "ic_launcher"
+  min_sdk_android: 22 # android min sdk min:16, default 21
+
+
+
 
 dev_dependencies:
   flutter_test:
