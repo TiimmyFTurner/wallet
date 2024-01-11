@@ -7,7 +7,7 @@
   "@card": {
     "description": "The current Language"
   },
-  "wallet": "Wallet",
+  "wallet": "Mini Wallet",
   "bank": "bank",
   "bankName": "{bank_name, select, ansar{Ansar} arman{Arman} ayande{Ayandeh} bankino{Bankino} blu{Blu Bank} dey{Dey} eghtesadnovin{Eghtesade Novin} gardeshgari{Gardeshgari} hekmat{Hekmat} iranzamin{Iran Zamin} karafarin{Kar Afarin} keshavarzi{Keshavarzi} khavaremiane{Middle East} kosar{Kosar} markazi{Markazi} maskan{Maskan} mehreeghtesad{Mehre Eghtesad} mehreiran{Mehre Iran} mellat{Mellat} melli{Melli} parsian{Parsian} pasargad{Pasargad} refah{Refah} resalat{Resalat} saderat{Saderat} salehin{Salehin} saman{Saman} samen{Samen} sanatmadan{Sanat Madan} sarmayeh{Sarmayeh} sepah{Sepah} shahr{Shahr} shaparak{Shaparak} sina{Sina} taavon{Taavon} tejarat{Tejarat} tsaderat{Tosee Saderat} other{Bank}}",
   "expDate": "VALID THRU",
