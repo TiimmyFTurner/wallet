@@ -34,41 +34,41 @@ class ShowImageCardState extends ConsumerState<ShowImageCardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-      child: Column(
-        children: [
-          Hero(
-            tag: "img${card.id}",
-            child: Image.file(File(card.path)),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.note,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          context.push('/editImageCard/${card.id}');
-                        },
-                        icon: const Icon(Icons.edit)),
-                    IconButton(
-                        onPressed: () => {deleteBottomSheet(context, ref)},
-                        icon: const Icon(Icons.delete)),
-                  ],
-                ),
-              ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Hero(
+              tag: "img${card.id}",
+              child: Image.file(File(card.path)),
             ),
-          ),
-          Expanded(
-            child: Padding(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.note,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            context.push('/editImageCard/${card.id}');
+                          },
+                          icon: const Icon(Icons.edit)),
+                      IconButton(
+                          onPressed: () => {deleteBottomSheet(context, ref)},
+                          icon: const Icon(Icons.delete)),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: SizedBox(
                 width: double.infinity,
@@ -88,9 +88,9 @@ class ShowImageCardState extends ConsumerState<ShowImageCardScreen> {
                 ),
               ),
             ),
-          ),
-          const SizedBox(height: 8)
-        ],
+            const SizedBox(height: 8)
+          ],
+        ),
       ),
     ));
   }
