@@ -218,7 +218,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     return Center(
       child: Column(
         children: [
-          Image.asset('assets/theme/empty.png'),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 48),
+            child: Image.asset('assets/theme/empty.png'),
+          ),
           Opacity(
             opacity: .75,
             child: Text(
