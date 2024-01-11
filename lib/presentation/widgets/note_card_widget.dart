@@ -17,8 +17,8 @@ class NoteCardWidget extends ConsumerWidget {
       child: Card(
         shadowColor: Colors.transparent,
         child: Container(
-          decoration:  BoxDecoration(
-            borderRadius:const BorderRadius.all(Radius.circular(10)),
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
             image: DecorationImage(
               fit: BoxFit.cover,
               opacity: .35,

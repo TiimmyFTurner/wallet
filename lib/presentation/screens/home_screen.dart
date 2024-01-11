@@ -108,7 +108,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          context.push('/showImageCard/${imageCards[index].id}');
+                          context
+                              .push('/showImageCard/${imageCards[index].id}');
                         },
                         child: Hero(
                           tag: "img${imageCards[index].id}",

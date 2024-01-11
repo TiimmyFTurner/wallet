@@ -129,7 +129,7 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
                                 const BorderRadius.all(Radius.circular(10)),
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage("assets/theme/cardbg${id}.png"),
+                              image: AssetImage("assets/theme/cardbg$id.png"),
                             ),
                           ),
                         ),
@@ -145,7 +145,7 @@ class AddCreditCardScreenState extends ConsumerState<AddCreditCardScreen> {
                               const BorderRadius.all(Radius.circular(10)),
                           image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: AssetImage("assets/theme/cardbg${item}.png"),
+                            image: AssetImage("assets/theme/cardbg$item.png"),
                           ),
                         ),
                       );

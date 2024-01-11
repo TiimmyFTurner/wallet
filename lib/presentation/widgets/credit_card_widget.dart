@@ -33,12 +33,13 @@ class CreditCardWidget extends ConsumerWidget {
               opacity: const AlwaysStoppedAnimation(.55),
             ),
             Container(
-              decoration:  BoxDecoration(
+              decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   opacity: .45,
-                  image: AssetImage('assets/theme/cardbg${creditCard.bgId}.png'),
+                  image:
+                      AssetImage('assets/theme/cardbg${creditCard.bgId}.png'),
                 ),
               ),
               child: Theme(
@@ -423,7 +424,7 @@ class CreditCardWidget extends ConsumerWidget {
                       )),
                   onPressed: () {
                     context.pop();
-                    deleteBottomSheet(context,ref);
+                    deleteBottomSheet(context, ref);
                   },
                   child: Text(
                     AppLocalizations.of(context)!.delete,
@@ -438,6 +439,7 @@ class CreditCardWidget extends ConsumerWidget {
       },
     );
   }
+
   deleteBottomSheet(context, ref) {
     showModalBottomSheet<void>(
       showDragHandle: true,
@@ -466,7 +468,7 @@ class CreditCardWidget extends ConsumerWidget {
                 child: FilledButton.tonal(
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
-                    Theme.of(context).colorScheme.errorContainer,
+                        Theme.of(context).colorScheme.errorContainer,
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.vertical(
                           top: Radius.circular(16), bottom: Radius.circular(4)),

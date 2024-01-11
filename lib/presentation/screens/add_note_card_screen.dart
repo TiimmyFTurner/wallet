@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wallet/application/state_management/credit_cards_provider.dart';
 import 'package:wallet/application/state_management/note_cards_provider.dart';
-import 'package:wallet/domain/bank_model.dart';
-import 'package:wallet/domain/credit_card_model.dart';
 import 'package:wallet/domain/note_card_model.dart';
-import 'package:wallet/infrastructure/data/bank_data.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:uuid/uuid.dart';
 
@@ -89,7 +84,7 @@ class AddNoteCardScreenState extends ConsumerState<AddNoteCardScreen> {
                                 const BorderRadius.all(Radius.circular(10)),
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage("assets/theme/cardbg${id}.png"),
+                              image: AssetImage("assets/theme/cardbg$id.png"),
                             ),
                           ),
                         ),
@@ -105,7 +100,7 @@ class AddNoteCardScreenState extends ConsumerState<AddNoteCardScreen> {
                               const BorderRadius.all(Radius.circular(10)),
                           image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: AssetImage("assets/theme/cardbg${item}.png"),
+                            image: AssetImage("assets/theme/cardbg$item.png"),
                           ),
                         ),
                       );

@@ -4,15 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet/application/state_management/credit_cards_provider.dart';
-import 'package:wallet/application/state_management/id_cards_provider.dart';
 import 'package:wallet/application/state_management/image_cards_provider.dart';
 import 'package:wallet/application/state_management/note_cards_provider.dart';
 import 'package:wallet/domain/credit_card_model.dart';
-import 'package:wallet/domain/id_card_model.dart';
 import 'package:wallet/domain/image_card_model.dart';
 import 'package:wallet/domain/note_card_model.dart';
 import 'package:wallet/presentation/widgets/credit_card_widget.dart';
-import 'package:wallet/presentation/widgets/id_card_widget.dart';
 import 'package:wallet/presentation/widgets/note_card_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -114,7 +111,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                         ),
                                       ),
                                       ListView.builder(
-                                          physics: const NeverScrollableScrollPhysics(),
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
                                           itemCount: searchedCreditCards.length,
                                           itemBuilder: (BuildContext context,
@@ -139,7 +137,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                         ),
                                       ),
                                       ListView.builder(
-                                          physics: const NeverScrollableScrollPhysics(),
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
                                           itemCount: searchedNoteCards.length,
                                           itemBuilder: (BuildContext context,
@@ -164,7 +163,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                         ),
                                       ),
                                       GridView.builder(
-                                        physics: const NeverScrollableScrollPhysics(),
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
                                         gridDelegate:
                                             const SliverGridDelegateWithFixedCrossAxisCount(

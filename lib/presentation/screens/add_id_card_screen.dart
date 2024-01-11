@@ -57,18 +57,15 @@ class AddIDCardScreenState extends ConsumerState<AddIDCardScreen> {
                     });
                   }
                   IDCard createdCard = IDCard(
-                    id: uuid.v1(),
-                    bgId: _selectedBackground,
-                    name: _nameController.text,
-                    number: _numberController.text,
-                    birthday: _birthdayController.text,
-                    exp: _expController.text,
-                    father: _fatherController.text,
-                    serial: _serialController.text
-                  );
-                  ref
-                      .read(iDCardsProvider.notifier)
-                      .addIDCard(createdCard);
+                      id: uuid.v1(),
+                      bgId: _selectedBackground,
+                      name: _nameController.text,
+                      number: _numberController.text,
+                      birthday: _birthdayController.text,
+                      exp: _expController.text,
+                      father: _fatherController.text,
+                      serial: _serialController.text);
+                  ref.read(iDCardsProvider.notifier).addIDCard(createdCard);
                   context.pop();
                 }
               },

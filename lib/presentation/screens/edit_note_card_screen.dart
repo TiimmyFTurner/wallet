@@ -98,7 +98,7 @@ class EditNoteCardScreenState extends ConsumerState<EditNoteCardScreen> {
                                 const BorderRadius.all(Radius.circular(10)),
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage("assets/theme/cardbg${id}.png"),
+                              image: AssetImage("assets/theme/cardbg$id.png"),
                             ),
                           ),
                         ),
@@ -114,7 +114,7 @@ class EditNoteCardScreenState extends ConsumerState<EditNoteCardScreen> {
                               const BorderRadius.all(Radius.circular(10)),
                           image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: AssetImage("assets/theme/cardbg${item}.png"),
+                            image: AssetImage("assets/theme/cardbg$item.png"),
                           ),
                         ),
                       );

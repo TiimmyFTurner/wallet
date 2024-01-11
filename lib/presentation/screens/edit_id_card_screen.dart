@@ -3,14 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:uuid/uuid.dart';
 import 'package:wallet/application/state_management/id_cards_provider.dart';
 import 'package:wallet/domain/id_card_model.dart';
 
 class EditIDCardScreen extends ConsumerStatefulWidget {
   final String cardId;
 
-  const EditIDCardScreen(this.cardId,{super.key});
+  const EditIDCardScreen(this.cardId, {super.key});
 
   @override
   EditIDCardScreenState createState() {
@@ -25,7 +24,6 @@ class EditIDCardScreenState extends ConsumerState<EditIDCardScreen> {
   final _expController = TextEditingController();
   final _fatherController = TextEditingController();
   final _serialController = TextEditingController();
-
 
   @override
   void initState() {
@@ -42,6 +40,7 @@ class EditIDCardScreenState extends ConsumerState<EditIDCardScreen> {
     _serialController.text = ((card.serial != '-') ? card.serial : '');
     super.initState();
   }
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -73,18 +72,15 @@ class EditIDCardScreenState extends ConsumerState<EditIDCardScreen> {
                     });
                   }
                   IDCard createdCard = IDCard(
-                    id: widget.cardId,
-                    bgId: _selectedBackground,
-                    name: _nameController.text,
-                    number: _numberController.text,
-                    birthday: _birthdayController.text,
-                    exp: _expController.text,
-                    father: _fatherController.text,
-                    serial: _serialController.text
-                  );
-                  ref
-                      .read(iDCardsProvider.notifier)
-                      .editIDCard(createdCard);
+                      id: widget.cardId,
+                      bgId: _selectedBackground,
+                      name: _nameController.text,
+                      number: _numberController.text,
+                      birthday: _birthdayController.text,
+                      exp: _expController.text,
+                      father: _fatherController.text,
+                      serial: _serialController.text);
+                  ref.read(iDCardsProvider.notifier).editIDCard(createdCard);
                   context.pop();
                 }
               },
