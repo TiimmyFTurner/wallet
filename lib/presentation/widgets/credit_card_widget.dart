@@ -7,14 +7,21 @@ import 'package:wallet/domain/credit_card_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:share_plus/share_plus.dart';
 
-class CreditCardWidget extends ConsumerWidget {
+class CreditCardWidget extends ConsumerStatefulWidget {
   final CreditCard creditCard;
 
   const CreditCardWidget(this.creditCard, {super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    String number = creditCard.number;
+  ConsumerState<CreditCardWidget> createState() => _CreditCardWidgetState();
+}
+
+class _CreditCardWidgetState extends ConsumerState<CreditCardWidget> {
+  bool passwordVisible = false;
+
+  @override
+  Widget build(BuildContext context) {
+    String number = widget.creditCard.number;
     String showNumber =
         "${number.substring(0, 4)}  ${number.substring(4, 8)}  ${number.substring(8, 12)}  ${number.substring(12, 16)}";
     return GestureDetector(
@@ -27,8 +34,8 @@ class CreditCardWidget extends ConsumerWidget {
         child: Stack(
           children: [
             Image(
-              image:
-                  AssetImage('assets/bank_logos/${creditCard.bank.name}.png'),
+              image: AssetImage(
+                  'assets/bank_logos/${widget.creditCard.bank.name}.png'),
               height: 75,
               opacity: const AlwaysStoppedAnimation(.55),
             ),
@@ -38,8 +45,8 @@ class CreditCardWidget extends ConsumerWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   opacity: .45,
-                  image:
-                      AssetImage('assets/theme/cardbg${creditCard.bgId}.png'),
+                  image: AssetImage(
+                      'assets/theme/cardbg${widget.creditCard.bgId}.png'),
                 ),
               ),
               child: Theme(
@@ -61,7 +68,7 @@ class CreditCardWidget extends ConsumerWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            creditCard.title,
+                            widget.creditCard.title,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontSize: 20,
@@ -85,7 +92,7 @@ class CreditCardWidget extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                '   ${creditCard.name}',
+                                '   ${widget.creditCard.name}',
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -114,11 +121,11 @@ class CreditCardWidget extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
-                                '${AppLocalizations.of(context)!.expDate}: ${creditCard.exp}',
+                                '${AppLocalizations.of(context)!.expDate}: ${widget.creditCard.exp}',
                                 style: const TextStyle(fontSize: 18),
                               ),
                               Text(
-                                'CVV2: ${creditCard.cvv2}',
+                                'CVV2: ${widget.creditCard.cvv2}',
                                 style: const TextStyle(fontSize: 18),
                               ),
                             ],
@@ -178,7 +185,7 @@ class CreditCardWidget extends ConsumerWidget {
                         ),
                         onPressed: () => {
                           Clipboard.setData(
-                              ClipboardData(text: creditCard.number)),
+                              ClipboardData(text: widget.creditCard.number)),
                           Navigator.pop(context),
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -208,7 +215,7 @@ class CreditCardWidget extends ConsumerWidget {
                         ),
                         onPressed: () async {
                           Navigator.pop(context);
-                          await Share.share(creditCard.number);
+                          await Share.share(widget.creditCard.number);
                         },
                         child: Text(AppLocalizations.of(context)!.share,
                             style: const TextStyle(fontSize: 20)),
@@ -243,7 +250,7 @@ class CreditCardWidget extends ConsumerWidget {
                         ),
                         onPressed: () => {
                           Clipboard.setData(
-                              ClipboardData(text: creditCard.shba)),
+                              ClipboardData(text: widget.creditCard.shba)),
                           Navigator.pop(context),
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -273,7 +280,7 @@ class CreditCardWidget extends ConsumerWidget {
                         ),
                         onPressed: () async {
                           Navigator.pop(context);
-                          await Share.share(creditCard.shba);
+                          await Share.share(widget.creditCard.shba);
                         },
                         child: Text(
                           AppLocalizations.of(context)!.share,
@@ -297,82 +304,99 @@ class CreditCardWidget extends ConsumerWidget {
       showDragHandle: true,
       context: context,
       builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                AppLocalizations.of(context)!.shba,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Card(
-                elevation: 0,
-                color: Theme.of(context).colorScheme.surfaceVariant,
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Text(
-                    creditCard.shba,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 20),
+        return StatefulBuilder(builder: (context, setState) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(
+                  AppLocalizations.of(context)!.shba,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                AppLocalizations.of(context)!.note,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                Card(
+                  elevation: 0,
+                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Text(
+                      widget.creditCard.shba,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
                 ),
-              ),
-              Card(
-                elevation: 0,
-                color: Theme.of(context).colorScheme.surfaceVariant,
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: SizedBox(
-                    height: 150,
-                    child: SingleChildScrollView(
-                      child: Text(
-                        creditCard.note,
-                        textAlign: TextAlign.justify,
-                        style: const TextStyle(fontSize: 20),
+                const SizedBox(height: 16),
+                Text(
+                  AppLocalizations.of(context)!.note,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Card(
+                  elevation: 0,
+                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: SizedBox(
+                      height: 150,
+                      child: SingleChildScrollView(
+                        child: Text(
+                          widget.creditCard.note,
+                          textAlign: TextAlign.justify,
+                          style: const TextStyle(fontSize: 20),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                AppLocalizations.of(context)!.password,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                const SizedBox(height: 16),
+                Text(
+                  AppLocalizations.of(context)!.password,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              Card(
-                elevation: 0,
-                color: Theme.of(context).colorScheme.surfaceVariant,
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Text(
-                    creditCard.pass,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 20,
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      passwordVisible = !passwordVisible;
+                    });
+                  },
+                  child: Card(
+                    elevation: 0,
+                    color: Theme.of(context).colorScheme.surfaceVariant,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: passwordVisible
+                          ? Text(
+                              widget.creditCard.pass,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 20,
+                              ),
+                            )
+                          : const Text(
+                              "••••",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 24),
-            ],
-          ),
-        );
+                const SizedBox(height: 24),
+              ],
+            ),
+          );
+        });
       },
     );
   }
@@ -399,7 +423,7 @@ class CreditCardWidget extends ConsumerWidget {
                   ),
                   onPressed: () {
                     context.pop();
-                    context.push('/editCreditCard/${creditCard.id}');
+                    context.push('/editCreditCard/${widget.creditCard.id}');
                   },
                   child: Text(
                     AppLocalizations.of(context)!.edit,
@@ -478,7 +502,7 @@ class CreditCardWidget extends ConsumerWidget {
                     context.pop();
                     ref
                         .read(creditCardsProvider.notifier)
-                        .removeCreditCard(creditCard.id);
+                        .removeCreditCard(widget.creditCard.id);
                   },
                   child: Text(
                     AppLocalizations.of(context)!.delete,
