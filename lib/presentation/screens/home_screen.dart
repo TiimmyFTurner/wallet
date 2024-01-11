@@ -29,6 +29,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    imageCache.clear();
     List<CreditCard> creditCards = ref.watch(creditCardsProvider);
     List<NoteCard> noteCards = ref.watch(noteCardsProvider);
     List<ImageCard> imageCards = ref.watch(imageCardsProvider);
