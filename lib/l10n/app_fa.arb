@@ -55,6 +55,7 @@
   "deleteIDCardQuestion": "حدف کارت ملی؟",
   "editIDCard": "ویرایش کارت ملی",
   "emptyPocketMessage": "توی این جیب هنوز چیزی نزاشتی!",
-  "emptySearchResultMessage": "چیزی پیدا نکردم!"
+  "emptySearchResultMessage": "چیزی پیدا نکردم!",
+  "expiryDate": "اعتبار"
 }
 

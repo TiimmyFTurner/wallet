@@ -55,5 +55,6 @@
   "deleteIDCardQuestion": "Delete ID Card?",
   "editIDCard": "Edit ID Card",
   "emptyPocketMessage": "This Pocket Is Empty",
-  "emptySearchResultMessage": "Nothing Found!"
+  "emptySearchResultMessage": "Nothing Found!",
+  "expiryDate": "Expiry"
 }

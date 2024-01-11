@@ -128,7 +128,7 @@ class IDCardWidget extends ConsumerWidget {
                             style: const TextStyle(fontSize: 18),
                           ),
                           Text(
-                            '${AppLocalizations.of(context)!.expDate}: ${idCard.exp}',
+                            '${AppLocalizations.of(context)!.expiryDate}: ${idCard.exp}',
                             style: const TextStyle(fontSize: 18),
                           ),
                         ],
