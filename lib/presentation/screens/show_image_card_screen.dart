@@ -22,16 +22,11 @@ class ShowImageCardState extends ConsumerState<ShowImageCardScreen> {
   late ImageCard card;
 
   @override
-  void initState() {
+  Widget build(BuildContext context) {
     card = ref
         .read(imageCardsProvider)
         .where((element) => element.id == widget.cardId)
         .first;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
