@@ -94,7 +94,7 @@ class AddNoteCardScreenState extends ConsumerState<AddNoteCardScreen> {
                   selectedItemBuilder: (_) {
                     return _backgroundList.map<Widget>((String item) {
                       return Container(
-                        width: 300,
+                        width: MediaQuery.of(context).size.width * .75,
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(10)),
