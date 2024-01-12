@@ -57,7 +57,7 @@
   "title": "Title",
   "wallet": "Mini Wallet",
   "year": "Year",
-  "setPasswordMessage": "You need to set a Passcode\nto protect your data",
+  "setPasswordMessage": "Create your passcode\nand lock your data tight",
   "setPassword": "Set Passcode",
   "enterPassword": "Enter Passcode",
   "cancel": "Cancel",
