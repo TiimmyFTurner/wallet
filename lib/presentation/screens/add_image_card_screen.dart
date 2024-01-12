@@ -56,6 +56,7 @@ class AddImageCardScreenState extends ConsumerState<AddImageCardScreen> {
                   ref
                       .read(imageCardsProvider.notifier)
                       .addImageCard(createdCard);
+                  imageCache.clear();
                 }
               },
               child: Text(AppLocalizations.of(context)!.save)),
