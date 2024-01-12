@@ -28,11 +28,14 @@ class _CreditCardWidgetState extends ConsumerState<CreditCardWidget> {
       shadowColor: Colors.transparent,
       child: Stack(
         children: [
-          Image(
-            image: AssetImage(
-                'assets/bank_logos/${widget.creditCard.bank.name}.png'),
-            height: 75,
-            opacity: const AlwaysStoppedAnimation(.55),
+          Padding(
+            padding: const EdgeInsets.all(3),
+            child: Image(
+              image: AssetImage(
+                  'assets/bank_logos/${widget.creditCard.bank.name}.png'),
+              height: 75,
+              opacity: const AlwaysStoppedAnimation(.75),
+            ),
           ),
           Container(
             decoration: BoxDecoration(
