@@ -30,6 +30,7 @@ class _PasswordScreenState extends ConsumerState<PasswordScreen> {
                   const SizedBox(height: 12),
                   Text(
                     AppLocalizations.of(context)!.setPasswordMessage,
+                    textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 18),
                   ),
                   const SizedBox(height: 12),

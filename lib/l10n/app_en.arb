@@ -57,14 +57,14 @@
   "title": "Title",
   "wallet": "Mini Wallet",
   "year": "Year",
-  "setPasswordMessage": "You need to set a Passcode to protect your data",
+  "setPasswordMessage": "You need to set a Passcode\nto protect your data",
   "setPassword": "Set Passcode",
   "enterPassword": "Enter Passcode",
   "cancel": "Cancel",
   "confirmPassword": "Confirm Passcode",
-  "changePassword": "Change Password",
+  "changePassword": "Change Passcode",
   "settings": "Settings",
-  "enterOldPassword": "Enter Old Password",
-  "enterNewPassword": "Enter New Password",
-  "confirmNewPassword": "Confirm New Password"
+  "enterOldPassword": "Enter Old Passcode",
+  "enterNewPassword": "Enter New Passcode",
+  "confirmNewPassword": "Confirm New Passcode"
 }

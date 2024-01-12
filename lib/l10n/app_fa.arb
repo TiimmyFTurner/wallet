@@ -57,7 +57,7 @@
   "title": "عنوان",
   "wallet": "مینی ولت",
   "year": "سال",
-  "setPasswordMessage": "برای محافظت از اطلاعاتت باید یه رمز براش بزاری",
+  "setPasswordMessage": "یه رمز عبور انتخاب کن\nبرای محافظت از اطلاعاتت",
   "setPassword": "تعیین رمز عبور",
   "enterPassword": "رمز عبور را وارد کنید",
   "cancel": "انصراف",
