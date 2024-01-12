@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
     return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
       return MaterialApp.router(
         routerConfig: router,
-        title: 'Flutter Demo',
+        title: 'Mini Wallet',
         theme: ThemeData(
             colorScheme: lightColorScheme ?? defaultScheme,
             useMaterial3: true,
