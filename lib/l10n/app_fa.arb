@@ -56,6 +56,11 @@
   "shbaCopyMessage": "شماره شبا کپی شد!",
   "title": "عنوان",
   "wallet": "مینی ولت",
-  "year": "سال"
+  "year": "سال",
+  "setPasswordMessage": "برای محافظت از اطلاعاتت باید یه رمز براش بزاری",
+  "setPassword": "تعیین رمز عبور",
+  "enterPassword": "رمز عبور را وارد کنید",
+  "cancel": "انصراف",
+  "confirmPassword": "تایید رمز عبور"
 }
 

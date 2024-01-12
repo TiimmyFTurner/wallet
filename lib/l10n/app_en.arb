@@ -56,5 +56,10 @@
   "shbaCopyMessage": "The SHBA was copied!",
   "title": "Title",
   "wallet": "Mini Wallet",
-  "year": "Year"
+  "year": "Year",
+  "setPasswordMessage": "You need to set a Passcode to protect your data",
+  "setPassword": "Set Passcode",
+  "enterPassword": "Enter Passcode",
+  "cancel": "Cancel",
+  "confirmPassword": "Confirm Passcode"
 }
