@@ -66,5 +66,6 @@
   "settings": "Settings",
   "enterOldPassword": "Enter Old Passcode",
   "enterNewPassword": "Enter New Passcode",
-  "confirmNewPassword": "Confirm New Passcode"
+  "confirmNewPassword": "Confirm New Passcode",
+  "passwordChangeMessage": "Your password has been changed successfully!"
 }

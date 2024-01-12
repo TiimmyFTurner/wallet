@@ -30,6 +30,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 context: context,
                 title: Text(AppLocalizations.of(context)!.enterOldPassword),
                 correctString: password,
+                cancelButton: Text(AppLocalizations.of(context)!.cancel),
                 onCancelled: null,
                 onUnlocked: () => screenLockCreate(
                     context: context,
@@ -41,6 +42,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                       ref.read(passwordProvider.notifier).setPassword(value);
                       context.pop();
                       context.pop();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(AppLocalizations.of(context)!
+                              .passwordChangeMessage),
+                        ),
+                      );
                     }),
               ),
               child: SizedBox(

@@ -66,6 +66,8 @@
   "settings": "تنظیمات",
   "enterOldPassword": "رمز عبور فعلی را وارد کنید",
   "enterNewPassword": "رمز عبور جدید را وارد کنید",
-  "confirmNewPassword": "تایید رمز عبور جدید"
+  "confirmNewPassword": "تایید رمز عبور جدید",
+  "passwordChangeMessage": "رمز عبور شما با موفقیت تغییر یافت!"
+
 }
 
