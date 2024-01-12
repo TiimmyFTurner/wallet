@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wallet/application/state_management/password_provider.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
@@ -18,28 +19,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     final String password = ref.watch(passwordProvider);
     return Scaffold(
       appBar: AppBar(
-        // actions: [
-        //   FilledButton(
-        //       onPressed: () {
-        //         if (_formKey.currentState!.validate()) {
-        //           NoteCard createdCard = NoteCard(
-        //             id: uuid.v1(),
-        //             bgId: _selectedBackground,
-        //             title: _titleController.text,
-        //             note: _noteController.text,
-        //           );
-        //           ref.read(noteCardsProvider.notifier).addNoteCard(createdCard);
-        //           context.pop();
-        //         }
-        //       },
-        //       child: Text(AppLocalizations.of(context)!.save)),
-        //   const SizedBox(width: 16)
-        // ],
         title: Text(AppLocalizations.of(context)!.settings),
       ),
       body: Center(
         child: Column(
           children: [
+            const SizedBox(height: 8),
             FilledButton.tonal(
               onPressed: () => screenLock(
                 context: context,
@@ -68,10 +53,40 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                   ),
                 ),
               ),
-            )
+            ),
+            const SizedBox(height: 36),
+            const Text("Copyright © 2024 Timothy F. Turner",
+                style: TextStyle(color: Colors.grey)),
+            InkWell(
+              onTap: _sendMail,
+              child: const Text("TiimmyFTurner@gmail.com",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey)),
+            ),
+            InkWell(
+              onTap: _openTelegram,
+              child: const Text("T.me/TiimmyFTurner",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey)),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> _sendMail() async {
+    final Uri url =
+        Uri.parse('mailto:TiimmyFTurner@gmail.com?subject=MafiaApp');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  Future<void> _openTelegram() async {
+    final Uri url = Uri.parse('https://T.me/TiimmyFTurner');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
   }
 }
