@@ -40,18 +40,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.wallet),
           actions: [
+            IconButton(
+                onPressed: () {
+                  context.pushNamed('settings');
+                },
+                icon: const Icon(Icons.settings)),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Hero(
-                tag: "search",
-                child: IconButton(
-                    onPressed: () {
-                      context.push('/searchScreen');
-                    },
-                    icon:
-                       const Icon(Icons.search)),
-              )),
-
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Hero(
+                  tag: "search",
+                  child: IconButton(
+                      onPressed: () {
+                        context.push('/searchScreen');
+                      },
+                      icon: const Icon(Icons.search)),
+                )),
           ],
         ),
         floatingActionButton: FloatingActionButton(

@@ -10,6 +10,7 @@ import 'package:wallet/presentation/screens/edit_note_card_screen.dart';
 import 'package:wallet/presentation/screens/home_screen.dart';
 import 'package:wallet/presentation/screens/password_screen.dart';
 import 'package:wallet/presentation/screens/search_screen.dart';
+import 'package:wallet/presentation/screens/settings_screen.dart';
 import 'package:wallet/presentation/screens/show_image_card_screen.dart';
 
 final GoRouter router = GoRouter(
@@ -25,6 +26,11 @@ final GoRouter router = GoRouter(
       name: 'home',
       builder: (context, state) => const HomeScreen(),
       routes: <RouteBase>[
+        GoRoute(
+          path: 'settings',
+          name: 'settings',
+          builder: (context, state) => const SettingsScreen(),
+        ),
         GoRoute(
           path: 'addCreditCard',
           builder: (context, state) => const AddCreditCardScreen(),

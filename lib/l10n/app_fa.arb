@@ -61,6 +61,11 @@
   "setPassword": "تعیین رمز عبور",
   "enterPassword": "رمز عبور را وارد کنید",
   "cancel": "انصراف",
-  "confirmPassword": "تایید رمز عبور"
+  "confirmPassword": "تایید رمز عبور",
+  "changePassword": "تغییر رمز عبور",
+  "settings": "تنظیمات",
+  "enterOldPassword": "رمز عبور فعلی را وارد کنید",
+  "enterNewPassword": "رمز عبور جدید را وارد کنید",
+  "confirmNewPassword": "تایید رمز عبور جدید"
 }
 

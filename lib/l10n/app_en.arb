@@ -61,5 +61,10 @@
   "setPassword": "Set Passcode",
   "enterPassword": "Enter Passcode",
   "cancel": "Cancel",
-  "confirmPassword": "Confirm Passcode"
+  "confirmPassword": "Confirm Passcode",
+  "changePassword": "Change Password",
+  "settings": "Settings",
+  "enterOldPassword": "Enter Old Password",
+  "enterNewPassword": "Enter New Password",
+  "confirmNewPassword": "Confirm New Password"
 }
