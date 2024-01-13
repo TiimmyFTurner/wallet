@@ -6,6 +6,8 @@ import 'package:go_router/go_router.dart';
 import 'package:wallet/application/state_management/image_cards_provider.dart';
 import 'package:wallet/domain/image_card_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:share_plus/share_plus.dart';
+
 
 class ShowImageCardScreen extends ConsumerStatefulWidget {
   final String cardId;
@@ -50,6 +52,11 @@ class ShowImageCardState extends ConsumerState<ShowImageCardScreen> {
                   ),
                   Row(
                     children: [
+                      IconButton(
+                          onPressed: () async {
+                            await Share.shareXFiles([XFile(card.path)], text: card.note);
+                          },
+                          icon: const Icon(Icons.share)),
                       IconButton(
                           onPressed: () {
                             context.push('/editImageCard/${card.id}');
