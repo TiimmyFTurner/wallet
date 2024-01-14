@@ -359,7 +359,7 @@ class _CreditCardWidgetState extends ConsumerState<CreditCardWidget> {
                                 ),
                               )
                             : const Text(
-                                "••••",
+                                "⬤⬤⬤⬤",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 20,
