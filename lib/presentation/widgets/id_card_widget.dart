@@ -125,11 +125,11 @@ class IDCardWidget extends ConsumerWidget {
                         children: [
                           Text(
                             '${AppLocalizations.of(context)!.birthDate}: ${idCard.birthday}',
-                            style: const TextStyle(fontSize: 18),
+                            style: const TextStyle(fontSize: 17),
                           ),
                           Text(
                             '${AppLocalizations.of(context)!.expiryDate}: ${idCard.exp}',
-                            style: const TextStyle(fontSize: 18),
+                            style: const TextStyle(fontSize: 17),
                           ),
                         ],
                       ),
