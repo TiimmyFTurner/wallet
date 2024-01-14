@@ -151,7 +151,7 @@ class _CreditCardWidgetState extends ConsumerState<CreditCardWidget> {
       builder: (BuildContext context) {
         return Column(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -162,134 +162,46 @@ class _CreditCardWidgetState extends ConsumerState<CreditCardWidget> {
             ),
             const SizedBox(height: 8),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 8),
-              child: Text(
-                AppLocalizations.of(context)!.cardNumber,
-                style: const TextStyle(fontSize: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 36),
+              child: SizedBox(
+                height: 56,
+                child: FilledButton.tonal(
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(16), bottom: Radius.circular(4)),
+                    ),
+                  ),
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    await Share.share(widget.creditCard.number);
+                  },
+                  child: Text(AppLocalizations.of(context)!.cardNumber,
+                      style: const TextStyle(fontSize: 20)),
+                ),
               ),
             ),
+            const SizedBox(height: 6),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: 56,
-                      child: FilledButton.tonal(
-                        style: ElevatedButton.styleFrom(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.horizontal(
-                                right: Radius.circular(16),
-                                left: Radius.circular(4)),
-                          ),
-                        ),
-                        onPressed: () => {
-                          Clipboard.setData(
-                              ClipboardData(text: widget.creditCard.number)),
-                          Navigator.pop(context),
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(AppLocalizations.of(context)!
-                                  .cardNumberCopyMessage),
-                            ),
-                          )
-                        },
-                        child: Text(
-                          AppLocalizations.of(context)!.copy,
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      ),
+              padding: const EdgeInsets.symmetric(horizontal: 36),
+              child: SizedBox(
+                height: 56,
+                child: FilledButton.tonal(
+                  style: ElevatedButton.styleFrom(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(4), bottom: Radius.circular(16)),
                     ),
                   ),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: SizedBox(
-                      height: 56,
-                      child: FilledButton.tonal(
-                        style: ElevatedButton.styleFrom(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.horizontal(
-                                left: Radius.circular(16),
-                                right: Radius.circular(4)),
-                          ),
-                        ),
-                        onPressed: () async {
-                          Navigator.pop(context);
-                          await Share.share(widget.creditCard.number);
-                        },
-                        child: Text(AppLocalizations.of(context)!.share,
-                            style: const TextStyle(fontSize: 20)),
-                      ),
-                    ),
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    await Share.share(widget.creditCard.shba);
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.shba,
+                    style: const TextStyle(fontSize: 20),
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 8),
-              child: Text(
-                AppLocalizations.of(context)!.shba,
-                style: const TextStyle(fontSize: 20),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: 56,
-                      child: FilledButton.tonal(
-                        style: ElevatedButton.styleFrom(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.horizontal(
-                                left: Radius.circular(4),
-                                right: Radius.circular(16)),
-                          ),
-                        ),
-                        onPressed: () => {
-                          Clipboard.setData(
-                              ClipboardData(text: widget.creditCard.shba)),
-                          Navigator.pop(context),
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(AppLocalizations.of(context)!
-                                  .shbaCopyMessage),
-                            ),
-                          )
-                        },
-                        child: Text(
-                          AppLocalizations.of(context)!.copy,
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: SizedBox(
-                      height: 56,
-                      child: FilledButton.tonal(
-                        style: ElevatedButton.styleFrom(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.horizontal(
-                                left: Radius.circular(16),
-                                right: Radius.circular(4)),
-                          ),
-                        ),
-                        onPressed: () async {
-                          Navigator.pop(context);
-                          await Share.share(widget.creditCard.shba);
-                        },
-                        child: Text(
-                          AppLocalizations.of(context)!.share,
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
             const SizedBox(height: 24)
