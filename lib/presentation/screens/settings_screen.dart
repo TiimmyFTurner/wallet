@@ -62,7 +62,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               ),
             ),
             const SizedBox(height: 36),
-            const Text("Mini Wallet 1.2.2",
+            const Text("Mini Wallet 1.3.0",
                 style: TextStyle(color: Colors.grey)),
             const Text("Copyright © 2024 Timothy F. Turner",
                 style: TextStyle(color: Colors.grey)),
