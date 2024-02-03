@@ -24,6 +24,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
+  final _pageViewController = PageController();
   int currentPageIndex = 0;
   bool idCardExist = false;
 
@@ -64,8 +65,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         bottomNavigationBar: NavigationBar(
           height: 70,
           onDestinationSelected: (int index) {
-            setState(() => currentPageIndex = index);
-          },
+            _pageViewController.animateToPage(index,
+                duration: const Duration(milliseconds: 100),
+                curve: Curves.decelerate);
+            },
           selectedIndex: currentPageIndex,
           destinations: <Widget>[
             NavigationDestination(
@@ -89,68 +92,78 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ),
           ],
         ),
-        body: <Widget>[
-          creditCards.isEmpty
-              ? emptyStateWidget()
-              : ListView.builder(
-                  padding: const EdgeInsets.only(bottom: 75),
-                  itemCount: creditCards.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return CreditCardWidget(creditCards[index]);
-                  }),
-          idCards.isEmpty
-              ? emptyStateWidget()
-              : ListView.builder(
-                  padding: const EdgeInsets.only(bottom: 75),
-                  itemCount: idCards.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return IDCardWidget(idCards[index]);
-                  }),
-          imageCards.isEmpty
-              ? emptyStateWidget()
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                    ),
-                    itemCount: imageCards.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          context
-                              .push('/showImageCard/${imageCards[index].id}');
-                        },
-                        child: Hero(
-                          tag: "img${imageCards[index].id}",
-                          child: Container(
-                            width: 75,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
-                              image: DecorationImage(
-                                image: FileImage(File(imageCards[index].path)),
-                                fit: BoxFit.cover,
+        body: PageView(
+          controller: _pageViewController,
+          onPageChanged: (index) {
+            setState(() {
+              currentPageIndex = index;
+            });
+          },
+          children: <Widget>[
+            creditCards.isEmpty
+                ? emptyStateWidget()
+                : ListView.builder(
+                    padding: const EdgeInsets.only(bottom: 75),
+                    itemCount: creditCards.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return CreditCardWidget(creditCards[index]);
+                    }),
+            idCards.isEmpty
+                ? emptyStateWidget()
+                : ListView.builder(
+                    padding: const EdgeInsets.only(bottom: 75),
+                    itemCount: idCards.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return IDCardWidget(idCards[index]);
+                    }),
+            imageCards.isEmpty
+                ? emptyStateWidget()
+                : Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 8,
+                        mainAxisSpacing: 8,
+                      ),
+                      itemCount: imageCards.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            context
+                                .push('/showImageCard/${imageCards[index].id}');
+                          },
+                          child: Hero(
+                            tag: "img${imageCards[index].id}",
+                            child: Container(
+                              width: 75,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(10)),
+                                image: DecorationImage(
+                                  image:
+                                      FileImage(File(imageCards[index].path)),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
-                ),
-          noteCards.isEmpty
-              ? emptyStateWidget()
-              : ListView.builder(
-                  padding: const EdgeInsets.only(bottom: 75),
-                  itemCount: noteCards.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return NoteCardWidget(noteCards[index]);
-                  }),
-        ][currentPageIndex]);
+            noteCards.isEmpty
+                ? emptyStateWidget()
+                : ListView.builder(
+                    padding: const EdgeInsets.only(bottom: 75),
+                    itemCount: noteCards.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return NoteCardWidget(noteCards[index]);
+                    }),
+          ],
+          // [currentPageIndex],
+        ));
   }
 
   emptyStateWidget() {
