@@ -6,7 +6,7 @@ import 'package:wallet/domain/id_card_model.dart';
 
 part 'id_cards_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class IDCards extends _$IDCards {
   dynamic _prefs;
 

@@ -6,7 +6,7 @@ import 'package:wallet/domain/image_card_model.dart';
 
 part 'image_cards_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ImageCards extends _$ImageCards {
   dynamic _prefs;
 

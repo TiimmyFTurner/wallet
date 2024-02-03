@@ -6,7 +6,7 @@ import 'package:wallet/domain/credit_card_model.dart';
 
 part 'credit_cards_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class CreditCards extends _$CreditCards {
   dynamic _prefs;
 

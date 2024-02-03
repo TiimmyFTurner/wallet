@@ -6,7 +6,7 @@ import 'package:wallet/domain/note_card_model.dart';
 
 part 'note_cards_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class NoteCards extends _$NoteCards {
   dynamic _prefs;
 

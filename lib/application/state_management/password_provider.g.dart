@@ -6,11 +6,11 @@ part of 'password_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$passwordHash() => r'0dbd802b6fc6ffe0169b54eeead658264f5c6eed';
+String _$passwordHash() => r'7bf8476c017c1a4263bc569d63425ed9a235d9c2';
 
 /// See also [Password].
 @ProviderFor(Password)
-final passwordProvider = AutoDisposeNotifierProvider<Password, String>.internal(
+final passwordProvider = NotifierProvider<Password, String>.internal(
   Password.new,
   name: r'passwordProvider',
   debugGetCreateSourceHash:
@@ -19,6 +19,6 @@ final passwordProvider = AutoDisposeNotifierProvider<Password, String>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef _$Password = AutoDisposeNotifier<String>;
+typedef _$Password = Notifier<String>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

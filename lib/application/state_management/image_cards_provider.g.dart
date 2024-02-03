@@ -6,12 +6,12 @@ part of 'image_cards_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$imageCardsHash() => r'24f9d24cdcf6f52559c126199f60faec07863c66';
+String _$imageCardsHash() => r'765bef1bbbac5fc358dd985b45c08f402bf2bb10';
 
 /// See also [ImageCards].
 @ProviderFor(ImageCards)
 final imageCardsProvider =
-    AutoDisposeNotifierProvider<ImageCards, List<ImageCard>>.internal(
+    NotifierProvider<ImageCards, List<ImageCard>>.internal(
   ImageCards.new,
   name: r'imageCardsProvider',
   debugGetCreateSourceHash:
@@ -20,6 +20,6 @@ final imageCardsProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$ImageCards = AutoDisposeNotifier<List<ImageCard>>;
+typedef _$ImageCards = Notifier<List<ImageCard>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -3,7 +3,7 @@ import 'package:wallet/application/state_management/shared_preferences_provider.
 
 part 'password_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class Password extends _$Password {
   dynamic _prefs;
 
