@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +14,33 @@ class PasswordScreen extends ConsumerStatefulWidget {
 }
 
 class _PasswordScreenState extends ConsumerState<PasswordScreen> {
+  @override
+  void initState() {
+    super.initState();
+    if (ref.read(passwordProvider).isEmpty) {
+      SchedulerBinding.instance.addPostFrameCallback((_) async {
+        await showDialog<String>(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(AppLocalizations.of(context)!.privacyPolicy),
+                content: Text(
+                    AppLocalizations.of(context)!.privacyPolicyMessage,
+                    textAlign: TextAlign.justify),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text(AppLocalizations.of(context)!.ok),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            });
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final String password = ref.watch(passwordProvider);

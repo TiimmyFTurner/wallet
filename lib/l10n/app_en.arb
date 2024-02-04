@@ -67,5 +67,8 @@
   "enterOldPassword": "Enter Old Passcode",
   "enterNewPassword": "Enter New Passcode",
   "confirmNewPassword": "Confirm New Passcode",
-  "passwordChangeMessage": "Your password has been changed successfully!"
+  "passwordChangeMessage": "Your password has been changed successfully!",
+  "privacyPolicy": "Privacy Policy",
+  "privacyPolicyMessage": "We do not collect any information from you when you use the App. The App does not require any internet connection. The App is a standalone application that runs locally on your device and does not communicate with any servers or third parties.",
+  "ok": "Ok"
 }
