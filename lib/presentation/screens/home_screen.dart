@@ -66,7 +66,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           height: 70,
           onDestinationSelected: (int index) {
             _pageViewController.animateToPage(index,
-                duration: const Duration(milliseconds: 100),
+                duration: const Duration(milliseconds: 250),
                 curve: Curves.decelerate);
             },
           selectedIndex: currentPageIndex,
