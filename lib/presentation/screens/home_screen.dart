@@ -28,15 +28,150 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   int currentPageIndex = 0;
   bool idCardExist = false;
 
+
   @override
   Widget build(BuildContext context) {
-    imageCache.clear();
     List<CreditCard> creditCards = ref.watch(creditCardsProvider);
     List<NoteCard> noteCards = ref.watch(noteCardsProvider);
     List<ImageCard> imageCards = ref.watch(imageCardsProvider);
     List<IDCard> idCards = ref.watch(iDCardsProvider);
     idCardExist = idCards.isEmpty ? false : true;
+    emptyStateWidget() {
+      return Center(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 48),
+              child: Image.asset('assets/theme/empty.png'),
+            ),
+            Opacity(
+              opacity: .75,
+              child: Text(
+                AppLocalizations.of(context)!.emptyPocketMessage,
+                style: const TextStyle(fontSize: 24),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
 
+    addItemBottomSheet(context) {
+      showModalBottomSheet<void>(
+        showDragHandle: true,
+        context: context,
+        builder: (BuildContext context) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Icon(
+                Icons.add_card_outlined,
+                size: 36,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                textAlign: TextAlign.center,
+                AppLocalizations.of(context)!.addItem,
+                style: const TextStyle(fontSize: 30),
+              ),
+              const SizedBox(height: 24),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 36),
+                child: SizedBox(
+                  height: 56,
+                  child: FilledButton.tonal(
+                    style: ElevatedButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(16), bottom: Radius.circular(4)),
+                      ),
+                    ),
+                    onPressed: () {
+                      context.pop();
+                      context.push('/addCreditCard');
+                    },
+                    child: Text(
+                      AppLocalizations.of(context)!.creditCard,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+              idCardExist
+                  ? const SizedBox(height: 6)
+                  : Padding(
+                padding:
+                const EdgeInsets.symmetric(horizontal: 36, vertical: 6),
+                child: SizedBox(
+                  height: 56,
+                  child: FilledButton.tonal(
+                    style: ElevatedButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(4))),
+                    ),
+                    onPressed: () {
+                      context.pop();
+                      context.push('/addIDCard');
+                    },
+                    child: Text(
+                      AppLocalizations.of(context)!.idCard,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 36),
+                child: SizedBox(
+                  height: 56,
+                  child: FilledButton.tonal(
+                    style: ElevatedButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4))),
+                    ),
+                    onPressed: () {
+                      context.pop();
+                      context.push('/addImageCard');
+                    },
+                    child: Text(
+                      AppLocalizations.of(context)!.imageCard,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 6),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 36),
+                child: SizedBox(
+                  height: 56,
+                  child: FilledButton.tonal(
+                    style: ElevatedButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(4), bottom: Radius.circular(16)),
+                      ),
+                    ),
+                    onPressed: () {
+                      context.pop();
+                      context.push('/addNoteCard');
+                    },
+                    child: Text(
+                      AppLocalizations.of(context)!.noteCard,
+                      style: const TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24)
+            ],
+          );
+        },
+      );
+    }
     return Scaffold(
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.wallet),
@@ -166,140 +301,5 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ));
   }
 
-  emptyStateWidget() {
-    return Center(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 48),
-            child: Image.asset('assets/theme/empty.png'),
-          ),
-          Opacity(
-            opacity: .75,
-            child: Text(
-              AppLocalizations.of(context)!.emptyPocketMessage,
-              style: const TextStyle(fontSize: 24),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
-  addItemBottomSheet(context) {
-    showModalBottomSheet<void>(
-      showDragHandle: true,
-      context: context,
-      builder: (BuildContext context) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Icon(
-              Icons.add_card_outlined,
-              size: 36,
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-            const SizedBox(height: 12),
-            Text(
-              textAlign: TextAlign.center,
-              AppLocalizations.of(context)!.addItem,
-              style: const TextStyle(fontSize: 30),
-            ),
-            const SizedBox(height: 24),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 36),
-              child: SizedBox(
-                height: 56,
-                child: FilledButton.tonal(
-                  style: ElevatedButton.styleFrom(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(16), bottom: Radius.circular(4)),
-                    ),
-                  ),
-                  onPressed: () {
-                    context.pop();
-                    context.push('/addCreditCard');
-                  },
-                  child: Text(
-                    AppLocalizations.of(context)!.creditCard,
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
-            idCardExist
-                ? const SizedBox(height: 6)
-                : Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 36, vertical: 6),
-                    child: SizedBox(
-                      height: 56,
-                      child: FilledButton.tonal(
-                        style: ElevatedButton.styleFrom(
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(4))),
-                        ),
-                        onPressed: () {
-                          context.pop();
-                          context.push('/addIDCard');
-                        },
-                        child: Text(
-                          AppLocalizations.of(context)!.idCard,
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 36),
-              child: SizedBox(
-                height: 56,
-                child: FilledButton.tonal(
-                  style: ElevatedButton.styleFrom(
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4))),
-                  ),
-                  onPressed: () {
-                    context.pop();
-                    context.push('/addImageCard');
-                  },
-                  child: Text(
-                    AppLocalizations.of(context)!.imageCard,
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 6),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 36),
-              child: SizedBox(
-                height: 56,
-                child: FilledButton.tonal(
-                  style: ElevatedButton.styleFrom(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(4), bottom: Radius.circular(16)),
-                    ),
-                  ),
-                  onPressed: () {
-                    context.pop();
-                    context.push('/addNoteCard');
-                  },
-                  child: Text(
-                    AppLocalizations.of(context)!.noteCard,
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 24)
-          ],
-        );
-      },
-    );
-  }
 }
