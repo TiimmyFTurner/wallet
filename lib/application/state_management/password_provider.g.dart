@@ -20,5 +20,21 @@ final passwordProvider = NotifierProvider<Password, String>.internal(
 );
 
 typedef _$Password = Notifier<String>;
+String _$passwordStatusHash() => r'67416464c86310e46fda651dd48ec687f23ee338';
+
+/// See also [PasswordStatus].
+@ProviderFor(PasswordStatus)
+final passwordStatusProvider =
+    AutoDisposeNotifierProvider<PasswordStatus, bool>.internal(
+  PasswordStatus.new,
+  name: r'passwordStatusProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$passwordStatusHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$PasswordStatus = AutoDisposeNotifier<bool>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

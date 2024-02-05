@@ -23,3 +23,19 @@ class Password extends _$Password {
     _prefs.setString('password', state);
   }
 }
+
+@riverpod
+class PasswordStatus extends _$PasswordStatus {
+  dynamic _prefs;
+
+  @override
+  bool build() {
+    _prefs = ref.watch(sharedPreferencesProvider);
+    final storedPassword = _prefs.getBool('passwordStatus');
+    return storedPassword ?? true;
+  }
+  void toggle(){
+    state = !state;
+    _prefs.setBool('passwordStatus', state);
+  }
+}
