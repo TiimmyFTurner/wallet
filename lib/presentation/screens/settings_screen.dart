@@ -17,69 +17,80 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final String password = ref.watch(passwordProvider);
+    bool passwordStatus = ref.watch(passwordStatusProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.settings),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const SizedBox(height: 8),
-            FilledButton.tonal(
-              onPressed: () => screenLock(
-                context: context,
-                title: Text(AppLocalizations.of(context)!.enterOldPassword),
-                correctString: password,
-                cancelButton: Text(AppLocalizations.of(context)!.cancel),
-                onCancelled: null,
-                onUnlocked: () => screenLockCreate(
-                    context: context,
-                    title: Text(AppLocalizations.of(context)!.enterNewPassword),
-                    cancelButton: Text(AppLocalizations.of(context)!.cancel),
-                    confirmTitle:
-                        Text(AppLocalizations.of(context)!.confirmNewPassword),
-                    onConfirmed: (value) {
-                      ref.read(passwordProvider.notifier).setPassword(value);
-                      context.pop();
-                      context.pop();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(AppLocalizations.of(context)!
-                              .passwordChangeMessage),
-                        ),
-                      );
-                    }),
-              ),
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * .75,
-                height: 70,
-                child: Center(
-                  child: Text(
-                    AppLocalizations.of(context)!.changePassword,
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                ),
-              ),
+      body: Column(
+        children: [
+          const SizedBox(height: 8),
+          SwitchListTile(
+              title: Text(AppLocalizations.of(context)!.usePassword),
+              value: passwordStatus,
+              onChanged: (value) {
+                ref.read(passwordStatusProvider.notifier).toggle();
+                if (!passwordStatus && password.isEmpty) {
+                  screenLockCreate(
+                      onCancelled: () {
+                        ref.read(passwordStatusProvider.notifier).toggle();
+                        context.pop();
+                      },
+                      context: context,
+                      title: Text(AppLocalizations.of(context)!.enterPassword),
+                      cancelButton: Text(AppLocalizations.of(context)!.cancel),
+                      confirmTitle:
+                          Text(AppLocalizations.of(context)!.confirmPassword),
+                      onConfirmed: (value) {
+                        ref.read(passwordProvider.notifier).setPassword(value);
+                        context.pop();
+                      });
+                }
+              }),
+          ListTile(
+            enabled: passwordStatus,
+            title: Text(AppLocalizations.of(context)!.changePassword),
+            onTap: () => screenLock(
+              context: context,
+              title: Text(AppLocalizations.of(context)!.enterOldPassword),
+              correctString: password,
+              cancelButton: Text(AppLocalizations.of(context)!.cancel),
+              onCancelled: null,
+              onUnlocked: () => screenLockCreate(
+                  context: context,
+                  title: Text(AppLocalizations.of(context)!.enterNewPassword),
+                  cancelButton: Text(AppLocalizations.of(context)!.cancel),
+                  confirmTitle:
+                      Text(AppLocalizations.of(context)!.confirmNewPassword),
+                  onConfirmed: (value) {
+                    ref.read(passwordProvider.notifier).setPassword(value);
+                    context.pop();
+                    context.pop();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(AppLocalizations.of(context)!
+                            .passwordChangeMessage),
+                      ),
+                    );
+                  }),
             ),
-            const SizedBox(height: 36),
-            const Text("Mini Wallet 1.4.0",
+          ),
+          const SizedBox(height: 36),
+          const Text("Mini Wallet 1.4.0", style: TextStyle(color: Colors.grey)),
+          const Text("Copyright © 2024 Timothy F. Turner",
+              style: TextStyle(color: Colors.grey)),
+          InkWell(
+            onTap: _sendMail,
+            child: const Text("TiimmyFTurner@gmail.com",
                 style: TextStyle(color: Colors.grey)),
-            const Text("Copyright © 2024 Timothy F. Turner",
+          ),
+          InkWell(
+            onTap: _openTelegram,
+            child: const Text("T.me/TiimmyFTurner",
                 style: TextStyle(color: Colors.grey)),
-            InkWell(
-              onTap: _sendMail,
-              child: const Text("TiimmyFTurner@gmail.com",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.grey)),
-            ),
-            InkWell(
-              onTap: _openTelegram,
-              child: const Text("T.me/TiimmyFTurner",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.grey)),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
