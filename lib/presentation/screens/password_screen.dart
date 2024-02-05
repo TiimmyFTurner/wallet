@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wallet/application/state_management/first_time_provider.dart';
 import 'package:wallet/application/state_management/password_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -17,8 +18,8 @@ class _PasswordScreenState extends ConsumerState<PasswordScreen> {
   @override
   void initState() {
     super.initState();
-    if (ref.read(passwordProvider).isEmpty) {
-      SchedulerBinding.instance.addPostFrameCallback((_) async {
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (ref.read(firstTimeProvider)) {
         await showDialog<String>(
             context: context,
             builder: (BuildContext context) {
@@ -31,22 +32,26 @@ class _PasswordScreenState extends ConsumerState<PasswordScreen> {
                   TextButton(
                     child: Text(AppLocalizations.of(context)!.ok),
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      context.pop();
                     },
                   ),
                 ],
               );
             });
-      });
-    }
+      } else if (!ref.read(passwordStatusProvider)) {
+        context.pushReplacementNamed("home");
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final String password = ref.watch(passwordProvider);
+    final bool firstTime = ref.read(firstTimeProvider);
+    final bool passwordStatus = ref.read(passwordStatusProvider);
 
     return Scaffold(
-      body: password.isEmpty
+      body: firstTime
           ? Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -76,6 +81,7 @@ class _PasswordScreenState extends ConsumerState<PasswordScreen> {
                             ref
                                 .read(passwordProvider.notifier)
                                 .setPassword(value);
+                            ref.read(firstTimeProvider.notifier).toggle();
                             context.pushReplacementNamed("home");
                           });
                     },
@@ -87,16 +93,31 @@ class _PasswordScreenState extends ConsumerState<PasswordScreen> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 8),
+                  FilledButton.tonal(
+                      onPressed: () {
+                        ref.read(firstTimeProvider.notifier).toggle();
+                        context.pushReplacementNamed("home");
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          AppLocalizations.of(context)!.useAppWithoutPassword,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                      )),
                   const SizedBox(height: 50)
                 ],
               ),
             )
-          : ScreenLock(
-              title: Text(AppLocalizations.of(context)!.enterPassword),
-              correctString: password,
-              onCancelled: null,
-              onUnlocked: () => context.pushReplacementNamed("home"),
-            ),
+          : passwordStatus
+              ? ScreenLock(
+                  title: Text(AppLocalizations.of(context)!.enterPassword),
+                  correctString: password,
+                  onCancelled: null,
+                  onUnlocked: () => context.pushReplacementNamed("home"),
+                )
+              : Container(),
     );
   }
 }
