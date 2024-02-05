@@ -31,8 +31,8 @@ class PasswordStatus extends _$PasswordStatus {
   @override
   bool build() {
     _prefs = ref.watch(sharedPreferencesProvider);
-    final storedPassword = _prefs.getBool('passwordStatus');
-    return storedPassword ?? true;
+    final passStatus = _prefs.getBool('passwordStatus');
+    return passStatus ?? true;
   }
   void toggle(){
     state = !state;

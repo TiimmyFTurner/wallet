@@ -20,7 +20,7 @@ final passwordProvider = NotifierProvider<Password, String>.internal(
 );
 
 typedef _$Password = Notifier<String>;
-String _$passwordStatusHash() => r'67416464c86310e46fda651dd48ec687f23ee338';
+String _$passwordStatusHash() => r'9c231344f936e427bcbb18b6be3d88f98554c34a';
 
 /// See also [PasswordStatus].
 @ProviderFor(PasswordStatus)
