@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wallet/application/state_management/shared_preferences_provider.dart';
+import 'package:wallet/l10n/l10n.dart';
 
 part 'settings_provider.g.dart';
 
@@ -12,14 +13,6 @@ class ThemeModeSetting extends _$ThemeModeSetting {
   ThemeMode build() {
     _prefs = ref.watch(sharedPreferencesProvider);
     final themeMode = _prefs.getInt('themeMode');
-    // switch (themeMode) {
-    //   case 1:
-    //     return ThemeMode.light;
-    //   case 2:
-    //     return ThemeMode.dark;
-    //   default:
-    //     return ThemeMode.system;
-    // }
     return switch (themeMode) {
       1 => ThemeMode.light,
       2 => ThemeMode.dark,
@@ -35,7 +28,31 @@ class ThemeModeSetting extends _$ThemeModeSetting {
       case ThemeMode.dark:
         _prefs.setInt('themeMode', 2);
       default:
-        _prefs.setInt('themeMode', 3);
+        _prefs.remove('themeMode');
+    }
+  }
+}
+
+@riverpod
+class LocaleSetting extends _$LocaleSetting {
+  dynamic _prefs;
+
+  @override
+  Locale build() {
+    _prefs = ref.watch(sharedPreferencesProvider);
+    final locale = _prefs.getInt('locale');
+    return switch (locale) { 1 => L10n.fa, 2 => L10n.en, _ => L10n.system };
+  }
+
+  void changeLocale(Locale locale) {
+    state = locale;
+    switch (locale) {
+      case L10n.fa:
+        _prefs.setInt('themeMode', 1);
+      case L10n.en:
+        _prefs.setInt('themeMode', 2);
+      default:
+        _prefs.remove('themeMode');
     }
   }
 }

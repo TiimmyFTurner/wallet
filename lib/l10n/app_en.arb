@@ -41,7 +41,7 @@
   "idNumber": "ID Number",
   "identifications": "Identifications",
   "imageCard": "Image Card",
-  "language": "english",
+  "language": "Language",
   "month": "Month",
   "mustBe16": "the length of this field must be 16",
   "name": "Name",
@@ -75,5 +75,6 @@
   "useAppWithoutPassword": "Use App Without Password",
   "themeMode": "{theme_mode, select, dark{Dark} light{Light} system{System Default}  other{Theme Mode}}",
   "chooseTheme": "Choose Theme",
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "languageMode": "{language, select, en{English} fa{فارسی} system{System Default}  other{Language}}"
 }

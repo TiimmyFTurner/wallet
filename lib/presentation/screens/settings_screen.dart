@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wallet/application/state_management/password_provider.dart';
 import 'package:wallet/application/state_management/settings_provider.dart';
+import 'package:wallet/l10n/l10n.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
@@ -145,6 +146,74 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                       ],
                     );
                   }),
+                );
+              }),
+          ListTile(
+              title: Text(AppLocalizations.of(context)!.language),
+              subtitle: Text(AppLocalizations.of(context)!
+                  .languageMode(ref.watch(localeSettingProvider).toString())),
+              onTap: () {
+                Locale locale = ref.read(localeSettingProvider);
+                showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) =>
+                      StatefulBuilder(builder: (context, setState) {
+                        return AlertDialog(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(AppLocalizations.of(context)!.language),
+                          content:
+                          Column(mainAxisSize: MainAxisSize.min, children: [
+                            RadioListTile<Locale>(
+                              title: Text(
+                                  AppLocalizations.of(context)!.languageMode('en')),
+                              value: L10n.en,
+                              groupValue: locale,
+                              onChanged: (value) {
+                                setState(() {
+                                  locale = value!;
+                                });
+                              },
+                            ),
+                            RadioListTile<Locale>(
+                              title: Text(
+                                  AppLocalizations.of(context)!.languageMode('fa')),
+                              value: L10n.fa,
+                              groupValue: locale,
+                              onChanged: (value) {
+                                setState(() {
+                                  locale = value!;
+                                });
+                              },
+                            ),
+                            RadioListTile<Locale>(
+                              title: Text(AppLocalizations.of(context)!
+                                  .themeMode('system')),
+                              value: L10n.system,
+                              groupValue: locale,
+                              onChanged: (value) {
+                                setState(() {
+                                  locale = value!;
+                                });
+                              },
+                            ),
+                          ]),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => context.pop(),
+                              child: Text(AppLocalizations.of(context)!.cancel),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                context.pop();
+                                ref
+                                    .read(localeSettingProvider.notifier)
+                                    .changeLocale(locale);
+                              },
+                              child: Text(AppLocalizations.of(context)!.confirm),
+                            ),
+                          ],
+                        );
+                      }),
                 );
               }),
           const SizedBox(height: 36),

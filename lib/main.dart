@@ -24,6 +24,7 @@ Future<void> main() async {
 
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -33,6 +34,8 @@ class MyApp extends ConsumerWidget {
         ColorScheme.fromSeed(seedColor: Colors.lightBlue);
     final ColorScheme defaultDarkScheme = ColorScheme.fromSeed(
         seedColor: Colors.lightBlue, brightness: Brightness.dark);
+    Locale locale = ref.watch(localeSettingProvider);
+    print(locale);
     return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
       return MaterialApp.router(
         routerConfig: router,
@@ -47,7 +50,9 @@ class MyApp extends ConsumerWidget {
             fontFamily: font),
         themeMode: ref.watch(themeModeSettingProvider),
         supportedLocales: L10n.all,
-        // locale: const Locale('fa'),
+        locale: locale != L10n.system
+            ? locale
+            : null,
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,

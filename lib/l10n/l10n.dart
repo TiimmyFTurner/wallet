@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
 class L10n {
-  static final all = [const Locale('en'), const Locale('fa')];
+  static const Locale en = Locale('en');
+  static const Locale fa = Locale('fa');
+  static const Locale system = Locale('system');
+  static final List<Locale> all = <Locale>[en, fa];
 }
