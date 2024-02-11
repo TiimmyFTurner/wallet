@@ -76,7 +76,9 @@
   "themeMode": "{theme_mode, select, dark{تاریک} light{روشن} system{پیش فرض سیستم}  other{حالت تم}}",
   "chooseTheme": "انتخاب تم",
   "confirm": "ثبت",
-  "languageMode": "{language, select, en{English} fa{فارسی} system{پیش فرض سیستم}  other{زبان}}"
-
+  "languageMode": "{language, select, en{English} fa{فارسی} system{پیش فرض سیستم}  other{زبان}}",
+  "createBackup": "ساخت فایل پشتیبان",
+  "restoreBackup": "بازنشانی اطلاعات از فایل پشتیبان",
+  "restoreBackupDone": "اطلاعات فایل پشتیبان بازیابی شد"
 }
 

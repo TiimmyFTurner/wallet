@@ -76,5 +76,8 @@
   "themeMode": "{theme_mode, select, dark{Dark} light{Light} system{System Default}  other{Theme Mode}}",
   "chooseTheme": "Choose Theme",
   "confirm": "Confirm",
-  "languageMode": "{language, select, en{English} fa{فارسی} system{System Default}  other{Language}}"
+  "languageMode": "{language, select, en{English} fa{فارسی} system{System Default}  other{Language}}",
+  "createBackup": "Create backup file",
+  "restoreBackup": "Restore backup from file",
+  "restoreBackupDone": "Restore backup is done"
 }

@@ -35,7 +35,6 @@ class MyApp extends ConsumerWidget {
     final ColorScheme defaultDarkScheme = ColorScheme.fromSeed(
         seedColor: Colors.lightBlue, brightness: Brightness.dark);
     Locale locale = ref.watch(localeSettingProvider);
-    print(locale);
     return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
       return MaterialApp.router(
         routerConfig: router,
