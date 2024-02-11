@@ -72,5 +72,8 @@
   "privacyPolicyMessage": "We do not collect any information from you when you use the App. The App does not require any internet connection. The App is a standalone application that runs locally on your device and does not communicate with any servers or third parties.",
   "ok": "Ok",
   "usePassword": "Password Protection",
-  "useAppWithoutPassword": "Use App Without Password"
+  "useAppWithoutPassword": "Use App Without Password",
+  "themeMode": "{theme_mode, select, dark{Dark} light{Light} system{System Default}  other{Theme Mode}}",
+  "chooseTheme": "Choose Theme",
+  "confirm": "Confirm"
 }

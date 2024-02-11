@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wallet/application/state_management/password_provider.dart';
+import 'package:wallet/application/state_management/settings_provider.dart';
 
 class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({super.key});
@@ -76,6 +78,75 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                   }),
             ),
           ),
+          const Divider(),
+          ListTile(
+              title: Text(AppLocalizations.of(context)!.chooseTheme),
+              subtitle: Text(AppLocalizations.of(context)!
+                  .themeMode(ref.watch(themeModeSettingProvider).name)),
+              onTap: () {
+                ThemeMode themeMode = ref.read(themeModeSettingProvider);
+                showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) =>
+                      StatefulBuilder(builder: (context, setState) {
+                    return AlertDialog(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(AppLocalizations.of(context)!.chooseTheme),
+                      content:
+                          Column(mainAxisSize: MainAxisSize.min, children: [
+                        RadioListTile<ThemeMode>(
+                          title: Text(
+                              AppLocalizations.of(context)!.themeMode('light')),
+                          value: ThemeMode.light,
+                          groupValue: themeMode,
+                          onChanged: (value) {
+                            setState(() {
+                              themeMode = value!;
+                            });
+                          },
+                        ),
+                        RadioListTile<ThemeMode>(
+                          title: Text(
+                              AppLocalizations.of(context)!.themeMode('dark')),
+                          value: ThemeMode.dark,
+                          groupValue: themeMode,
+                          onChanged: (value) {
+                            setState(() {
+                              themeMode = value!;
+                            });
+                          },
+                        ),
+                        RadioListTile<ThemeMode>(
+                          title: Text(AppLocalizations.of(context)!
+                              .themeMode('system')),
+                          value: ThemeMode.system,
+                          groupValue: themeMode,
+                          onChanged: (value) {
+                            setState(() {
+                              themeMode = value!;
+                            });
+                          },
+                        ),
+                      ]),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => context.pop(),
+                          child: Text(AppLocalizations.of(context)!.cancel),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            context.pop();
+                            ref
+                                .read(themeModeSettingProvider.notifier)
+                                .changeTheme(themeMode);
+                          },
+                          child: Text(AppLocalizations.of(context)!.confirm),
+                        ),
+                      ],
+                    );
+                  }),
+                );
+              }),
           const SizedBox(height: 36),
           const Text("Mini Wallet 1.5.0", style: TextStyle(color: Colors.grey)),
           const Text("Copyright © 2024 Timothy F. Turner",
