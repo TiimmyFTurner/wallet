@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wallet/application/state_management/settings_provider.dart';
 import 'package:wallet/application/state_management/shared_preferences_provider.dart';
 import 'package:wallet/infrastructure/router.dart';
 import 'package:wallet/l10n/l10n.dart';
@@ -21,12 +22,11 @@ Future<void> main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final String? font =
         Platform.localeName.substring(0, 2) == "fa" ? 'Koodak' : null;
     final ColorScheme defaultScheme =
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
             colorScheme: darkColorScheme ?? defaultDarkScheme,
             useMaterial3: true,
             fontFamily: font),
-        themeMode: ThemeMode.system,
+        themeMode: ref.watch(themeModeSettingProvider),
         supportedLocales: L10n.all,
         // locale: const Locale('fa'),
         localizationsDelegates: const [
