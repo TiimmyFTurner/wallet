@@ -28,13 +28,13 @@ class MyApp extends ConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final String? font =
-        Platform.localeName.substring(0, 2) == "fa" ? 'Koodak' : null;
     final ColorScheme defaultScheme =
         ColorScheme.fromSeed(seedColor: Colors.lightBlue);
     final ColorScheme defaultDarkScheme = ColorScheme.fromSeed(
         seedColor: Colors.lightBlue, brightness: Brightness.dark);
     Locale locale = ref.watch(localeSettingProvider);
+    String? font = locale == L10n.fa ? 'Koodak' : null;
+
     return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
       return MaterialApp.router(
         routerConfig: router,
@@ -49,9 +49,7 @@ class MyApp extends ConsumerWidget {
             fontFamily: font),
         themeMode: ref.watch(themeModeSettingProvider),
         supportedLocales: L10n.all,
-        locale: locale != L10n.system
-            ? locale
-            : null,
+        locale: locale != L10n.system ? locale : null,
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
